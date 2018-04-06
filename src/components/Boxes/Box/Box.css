@@ -1,0 +1,34 @@
+.Box {
+    width: 10%;
+    height: 10%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 1px solid rgb(247, 247, 237);
+    background-color: rgb(250, 250, 240);
+    display: inline-block;
+}
+
+.Box:hover {
+    background-color: rgb(240, 238, 240);
+}
+
+.BoxActivated,
+.BoxActivated:hover {
+    background-color: rgb(29, 89, 93);
+}
+
+
+
+.BoxNext,
+.BoxNext:hover {
+    background-color: rgb(200, 200, 85);
+}
+/* .BoxNext:hover {
+    background-color: rgb(200, 200, 85);
+} */
+
+.BoxMust,
+.BoxMust:hover {
+    background-color: rgb(94, 95, 41);
+}
