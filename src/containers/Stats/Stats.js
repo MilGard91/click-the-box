@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
 import classes from './Stats.css';
-// import Timer from '../../components/Timer/Timer';
+import * as actions from '../../store/actions/index';
 
 class Stats extends Component {
 
 
+
     render() {
-        // let time = Math.round(this.state.time / 1000);
+        
         return (
             <div className={classes.Stats}>
                 <h1> Game Stats </h1>
-                {/* <p> Timer: <Timer/></p> */}
+                <p> Timer: {this.props.time}</p>
                 <p> Clicks left: <span style={{ color: 'red' }}>{this.props.counter} </span> </p>
                 <p> Lives: <span style={{ color: 'green' }}>{this.props.lives}</span> </p>
                 <p> Level: <span style={{ color: 'green' }}>{this.props.level}</span> </p>
@@ -24,10 +25,18 @@ class Stats extends Component {
 const mapStateToProps = state => {
     return {
         gameStarted: state.board.gameStarted,
+        gameFinished: state.board.gameStarted,
         counter: state.board.counter,
         lives: state.board.lives,
-        level: state.board.level
+        level: state.board.level,
+        time: state.stats.time
     }
 }
 
-export default connect(mapStateToProps)(Stats);
+const mapDispatchToProps = dispatch => {
+    return {
+        onTimer: (gameStarted, gameFinished)=> dispatch(actions.timer(gameStarted, gameFinished))
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Stats);

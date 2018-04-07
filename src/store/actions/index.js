@@ -6,6 +6,7 @@ export {
 } from './board';
 
 export {
+    timer,
     timerStarted,
     timerStoped
 } from './stats'
