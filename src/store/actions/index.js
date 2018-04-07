@@ -1,6 +1,8 @@
 export {
     gameStart,
-    boxClicked
+    gameFinished,
+    boxClicked,
+    nextLvl
 } from './board';
 
 export {

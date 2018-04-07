@@ -51,10 +51,9 @@ export const nextMoves = (last, must) => {
 
 export const positionClicked = (last, must) => {
     let newMust= [...must];
-    let k = positionInArray(must, last)
-    newMust.splice(k, 1);
-    console.log(newMust);
-    return newMust;
+    let k = positionInArray(newMust, last);
+    newMust.splice(k,1);
+  return newMust;
 }
 
 

@@ -32,3 +32,8 @@
 .BoxMust:hover {
     background-color: rgb(94, 95, 41);
 }
+
+.BoxFlaged,
+.BoxFlaged:hover {
+    background-color: rgb(146, 0, 0)
+}

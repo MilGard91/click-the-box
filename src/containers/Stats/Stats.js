@@ -2,14 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
 import classes from './Stats.css';
-import Timer from '../../components/Timer/Timer';
+// import Timer from '../../components/Timer/Timer';
 
 class Stats extends Component {
-    state = {
-        // timer: null,
-        time: 0,
-        lives: 1
-    }
+
 
     render() {
         // let time = Math.round(this.state.time / 1000);
@@ -17,8 +13,9 @@ class Stats extends Component {
             <div className={classes.Stats}>
                 <h1> Game Stats </h1>
                 {/* <p> Timer: <Timer/></p> */}
-                <p> Clicked: <span style={{ color: 'red' }}>{this.props.counter} </span> </p>
-                <p> Lives: <span style={{ color: 'green' }}>{this.state.lives}</span> </p>
+                <p> Clicks left: <span style={{ color: 'red' }}>{this.props.counter} </span> </p>
+                <p> Lives: <span style={{ color: 'green' }}>{this.props.lives}</span> </p>
+                <p> Level: <span style={{ color: 'green' }}>{this.props.level}</span> </p>
             </div>
         );
     }
@@ -26,8 +23,10 @@ class Stats extends Component {
 
 const mapStateToProps = state => {
     return {
-        gameStarted: state.stats.gameStarted,
-        counter: state.stats.counter,
+        gameStarted: state.board.gameStarted,
+        counter: state.board.counter,
+        lives: state.board.lives,
+        level: state.board.level
     }
 }
 
