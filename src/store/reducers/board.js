@@ -43,7 +43,6 @@ const reducer = (state = intitialState, action) => {
                 ...state,
                 gameFinished: true,
                 flaged: [action.position],
-                finishMessage: 'Clicked the wrong box',
                 finishType: 'Lost',
                 lives: state.lives - state.counter
             }
@@ -55,7 +54,7 @@ const reducer = (state = intitialState, action) => {
                 nextPosition: algorithms.nextMoves([action.position], algorithms.positionClicked(action.position, state.mustPosition)),
                 counter: state.counter - 1,
             }
-        case actionTypes.GAME_FINISHED:
+        case actionTypes.GAME_FINISH:
             if (state.nextPosition.length === 0 && state.mustPosition.length === 0 && state.finishType !== 'Lost') {
                 return {
                     ...state,

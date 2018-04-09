@@ -28,12 +28,20 @@ const checkTheBox = (positionX, positionY) => {
     }
 }
 
-export const gameFinished = (positionX, positionY) => {
+export const gameFinish = (positionX, positionY) => {
     return {
-        type: actionTypes.GAME_FINISHED,
+        type: actionTypes.GAME_FINISH,
         position: [positionX, positionY]
     }
 }
+
+export const gameFinished = (lives) => {
+    return {
+        type:actionTypes.GAME_FINISHED,
+        lives: lives
+    }
+}
+
 
 export const boxClicked = (gameStarted, positionX, positionY) => {
     return (dispatch, getState) => {
@@ -43,7 +51,10 @@ export const boxClicked = (gameStarted, positionX, positionY) => {
         } else {
             dispatch(checkTheBox(positionX, positionY));
             dispatch(boxActivated(positionX, positionY));
-            dispatch(gameFinished(positionX, positionY));
+            dispatch(gameFinish(positionX, positionY));
+        }
+        if (getState().board.gameFinished && getState().board.finisType === 'Win') {
+            dispatch(gameFinished(getState().board.lives))
         }
 
     }

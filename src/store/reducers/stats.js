@@ -1,21 +1,31 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const intitialState = {
+    level: null,
     time: 0,
     topScore: '',
     data: {
-        users: ['marko', 'zika'],
-        marko: [[10, 5], [11, 15], [6, 12]],
-        zika: [],
-        guest: []
+        users: []
     },
     user: [],
     pickLvl: false,
     pickPlayer: true,
+    lives: 0,
+    gameReady: false
 }
 
 const reducer = (state = intitialState, action) => {
     switch (action.type) {
+        case actionTypes.GET_DATA:
+        return {
+            ...state,
+            data: {...action.data}
+        }
+        case actionTypes.GAME_READY:
+        return {
+            ...state,
+            gameReady: true,
+        }
         case actionTypes.GAME_START:
             return {
                 ...state,
@@ -26,16 +36,25 @@ const reducer = (state = intitialState, action) => {
                 ...state,
                 time: state.time + 1
             }
-        case actionTypes.TIMER_STOPED:
+        case actionTypes.GAME_FINISHED:
+            let arr = [...state.user];
+            if (arr.length>state.level-1){
+                arr[state.level - 1] = [...state.user[state.level - 1], state.time]
+            } else {
+                arr.push([state.time])
+            }
             return {
-                ...state
+                ...state,
+                user: arr,
+                level: state.level +1,
+                lives: action.lives
             }
         case actionTypes.SUBMIT_NEW_PLAYER:
             return {
                 ...state,
                 data: {
                     ...state.data,
-                    users: [...state.data.users, action.newPlayer],
+                    users: [...state.data.users, [action.newPlayer, 1]],
                     [action.newPlayer]: [],
                 }
             }
@@ -49,7 +68,8 @@ const reducer = (state = intitialState, action) => {
         case actionTypes.SELECT_LEVEL:
             return {
                 ...state,
-                pickLvl: false
+                pickLvl: false,
+                level: action.lvlNumber
             }
         default: return state;
     }

@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
@@ -8,11 +9,11 @@ class Timer extends Component {
 
     
     componentDidMount() {
-        this.props.onTimeStarts();
+        this.interval= setInterval(() => this.props.onTimerTick(),1000);
     }
 
     componentWillUnmount() {
-        this.props.onTimeStops();
+        clearInterval(this.interval)
     }
 
     render() {
@@ -29,11 +30,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onTimeStarts: () => dispatch(actions.timer()),
-        onTimeStops: () =>dispatch(actions.timerStoped())
+        onTimerTick: () => dispatch(actions.timerTick()),
     }
 }
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Timer);
-

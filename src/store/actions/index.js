@@ -6,9 +6,14 @@ export {
 } from './board';
 
 export {
-    timer,
-    timerStoped,
+    timerTick,
     submitNewPlayer,
     selectPlayer,
     selectLevel
 } from './stats'
+
+
+export {
+    checkGameData,
+    storeGameData
+} from './data'

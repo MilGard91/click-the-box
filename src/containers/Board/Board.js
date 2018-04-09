@@ -15,21 +15,6 @@ class Board extends Component {
     }
 
 
-    clickedOnTheBoxHandler(x, y) {
-        console.log('Box position: ' + x + '-' + y);
-        if (!this.props.gameStarted) {
-            this.props.onGameStart(x, y);
-        } else {
-            this.props.onBoxClicked(x, y);
-        }
-        console.log(this.props.nextPosition.length)
-        if (this.props.gameStarted && this.props.nextPosition.length === 0) {
-            this.props.onGameFinish('win')
-        }
-
-    }
-
-
     render() {
         let finishMessage = this.props.finishType === 'Win' ? (
             <div>
