@@ -10,3 +10,5 @@ export const TIMER_STOPED = 'TIMER_STOPED';
 export const TIMER_TICK = 'TIMER_TICK';
 
 export const SUBMIT_NEW_PLAYER = 'SUBMIT_NEW_PLAYER';
+export const SELECT_PLAYER = 'SELECT_PLAYER';
+export const SELECT_LEVEL = 'SELECT_LEVEL';

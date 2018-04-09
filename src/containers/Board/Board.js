@@ -6,7 +6,7 @@ import Boxes from '../../components/Boxes/Boxes';
 import classes from './Board.css';
 import * as actions from '../../store/actions/index';
 import Button from '../../components/UI/Button/Button';
-import Players from '../../components/Players/Players';
+// import Players from '../../components/Players/Players';
 
 
 class Board extends Component {

@@ -53,7 +53,7 @@ const reducer = (state = intitialState, action) => {
                 activePosition: [...state.activePosition, action.position],
                 mustPosition: algorithms.positionClicked(action.position, state.mustPosition),
                 nextPosition: algorithms.nextMoves([action.position], algorithms.positionClicked(action.position, state.mustPosition)),
-                counter: state.counter -1,
+                counter: state.counter - 1,
             }
         case actionTypes.GAME_FINISHED:
             if (state.nextPosition.length === 0 && state.mustPosition.length === 0 && state.finishType !== 'Lost') {
@@ -89,7 +89,12 @@ const reducer = (state = intitialState, action) => {
                 lastClicked: [],
                 flaged: [],
                 counter: '~'
-            }
+            };
+        case actionTypes.SELECT_LEVEL:
+            return {
+                ...state,
+                level: action.lvlNumber
+            };
 
         default: return state;
     }

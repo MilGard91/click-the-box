@@ -40,3 +40,16 @@ export const submitNewPlayer = (newPlayer) => {
     }
 }
 
+export const selectPlayer = (playerName) => {
+    return {
+        type: actionTypes.SELECT_PLAYER,
+        playerName: playerName
+    }
+}
+
+export const selectLevel = (lvlNumber) => {
+    return {
+        type: actionTypes.SELECT_LEVEL,
+        lvlNumber: lvlNumber,
+    }
+}

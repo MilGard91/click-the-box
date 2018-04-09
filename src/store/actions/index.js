@@ -9,4 +9,6 @@ export {
     timer,
     timerStoped,
     submitNewPlayer,
+    selectPlayer,
+    selectLevel
 } from './stats'
