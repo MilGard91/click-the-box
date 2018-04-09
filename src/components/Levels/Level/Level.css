@@ -1,0 +1,19 @@
+.Level {
+    background-color: transparent;
+    border: 1px solid blue;
+    color: blue;
+    font: inherit;
+    display: inline-block;
+    outline: none;
+    padding: 10px;
+    margin: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 1000%;
+}
+
+.Level:hover{
+    color: cyan;
+    border: 1px solid cyan;
+}
+

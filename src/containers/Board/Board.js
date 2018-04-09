@@ -6,6 +6,7 @@ import Boxes from '../../components/Boxes/Boxes';
 import classes from './Board.css';
 import * as actions from '../../store/actions/index';
 import Button from '../../components/UI/Button/Button';
+import Players from '../../components/Players/Players';
 
 
 class Board extends Component {
@@ -42,13 +43,7 @@ class Board extends Component {
                 <Button btnType={"Lost"}>QUIT</Button>
                 <Button btnType={"Win"} clicked={this.props.onNextLvl}>CONTINUE</Button>
             </div>
-        ):  (
-            <div>
-                <p>START THE GAME</p>
-                <Button btnType={"Lost"}>QUIT</Button>
-                <Button btnType={"Win"} clicked={this.props.onNextLvl}>CONTINUE</Button>
-            </div>
-        );
+        ): null;
 
         return (
             <div className={classes.Board}>
@@ -76,7 +71,8 @@ const mapStateToProps = state => {
         finishMessage: state.board.finishMessage,
         flaged: state.board.flaged,
         finishType: state.board.finishType,
-        level: state.board.level
+        level: state.board.level,
+        players: state.stats.data.users
     }
 }
 

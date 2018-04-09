@@ -1,0 +1,17 @@
+.Player {
+    background-color: transparent;
+    border: none;
+    color: purple;
+    font: inherit;
+    display: block;
+    outline: none;
+    padding: 10px;
+    margin: 5px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.Player:hover{
+    color: violet;
+}
+

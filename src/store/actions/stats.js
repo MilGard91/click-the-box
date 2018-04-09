@@ -7,27 +7,36 @@ export const timerStarted = () => {
 }
 
 
-export const timerStoped = () => {
-    return {
-        type: actionTypes.TIMER_STOPED
-    }
-}
+// export const timerStoped = () => {
+//     return {
+//         type: actionTypes.TIMER_STOPED
+//     }
+// }
 
 export const timerTick = () => {
     return {
         type: actionTypes.TIMER_TICK
+    };
+};
+let sec;
+export const timer = () => {
+    return dispatch => {
+            dispatch(timerStarted());
+            setInterval(dispatch(timerTick()), 1000);
+    };
+};
+
+export const timerStoped = () => {
+    return dispatch => {
+        clearInterval(sec)
     }
 }
 
-export const timer = (gameStarted, gameEnded) => {
-    return dispatch => {
-        let timer;
-        if (gameStarted){
-            dispatch(timerStarted());
-            timer = setInterval(dispatch(timerTick()), 1000);
-        } else {
-            clearInterval(timer);
-            dispatch(timerStoped())
-        }
+
+export const submitNewPlayer = (newPlayer) => {
+    return {
+        type: actionTypes.SUBMIT_NEW_PLAYER,
+        newPlayer: newPlayer,
     }
 }
+

@@ -7,6 +7,6 @@ export {
 
 export {
     timer,
-    timerStarted,
-    timerStoped
+    timerStoped,
+    submitNewPlayer,
 } from './stats'

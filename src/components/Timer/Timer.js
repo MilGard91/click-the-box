@@ -2,47 +2,38 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
 
-// import * as actions from '../../store/actions/index';
+import * as actions from '../../store/actions/index';
 
 class Timer extends Component {
 
+    
     componentDidMount() {
-        this.interval = setInterval(this.forceUpdate.bind(this), 1000);
+        this.props.onTimeStarts();
     }
-
 
     componentWillUnmount() {
-        clearInterval(this.interval);
+        this.props.onTimeStops();
     }
 
+    render() {
 
-
-    
-
-    rednder() {
-
-        const getElapsedTime = (startedAt, stoppedAt = new Date().getTime()) => {
-            if (!startedAt) {
-                return 0;
-            } else {
-                return stoppedAt - startedAt;
-            }
-        }
-
-        const elapsed = getElapsedTime(this.props.startedAt, this.props.stoppedAt);
-
-        return (
-            <span style = {{color: 'green'}}>{elapsed}</span>
-        )
+        return <span>{this.props.time}s</span>;
     }
 }
 
 const mapStateToProps = state => {
     return {
-        timerStarted: state.stats.timeStarted,
-        timerStoped: state.stats.timerStoped
+        time: state.stats.time,
     };
 };
 
+const mapDispatchToProps = dispatch => {
+    return {
+        onTimeStarts: () => dispatch(actions.timer()),
+        onTimeStops: () =>dispatch(actions.timerStoped())
+    }
+}
 
-export default connect(mapStateToProps)(Timer);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Timer);
+

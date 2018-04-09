@@ -5,7 +5,7 @@ import * as utility from '../../Utility'
 const intitialState = {
     counter: '~',
     gameStarted: false,
-    gameFinished: true,
+    gameFinished: false,
     finishType: '',
     finishMessage: '',
     nextPosition: [],

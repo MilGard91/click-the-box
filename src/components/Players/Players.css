@@ -1,0 +1,5 @@
+.Players {
+    display: flex;
+    flex-flow: column wrap;
+    margin-bottom: 15px;
+}
