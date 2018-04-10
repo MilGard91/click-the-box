@@ -14,11 +14,18 @@ const gameReady = () => {
     }
 }
 
-export const storeGameData = (gameData) => {
-    // localStorage.removeItem('click-the-box');
-    localStorage.setItem('click-the-box', JSON.stringify(gameData))
+export const gameStored = () => {
     return {
-        type:actionTypes.STORE_DATA
+        type: actionTypes.DATA_STORED
+    }
+}
+
+
+export const storeGameData = (gameData) => {
+    return dispatch => {
+        console.log(gameData)
+        localStorage.setItem('click-the-box', JSON.stringify(gameData));
+        dispatch(gameStored());
     }
 }
 

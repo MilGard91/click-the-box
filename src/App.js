@@ -11,6 +11,7 @@ class App extends Component {
     this.props.onStart(this.props.data);
   }
 
+
   
   render() {
     let layout = null;

@@ -17,15 +17,15 @@ const intitialState = {
 const reducer = (state = intitialState, action) => {
     switch (action.type) {
         case actionTypes.GET_DATA:
-        return {
-            ...state,
-            data: {...action.data}
-        }
+            return {
+                ...state,
+                data: { ...action.data }
+            }
         case actionTypes.GAME_READY:
-        return {
-            ...state,
-            gameReady: true,
-        }
+            return {
+                ...state,
+                gameReady: true,
+            }
         case actionTypes.GAME_START:
             return {
                 ...state,
@@ -38,7 +38,7 @@ const reducer = (state = intitialState, action) => {
             }
         case actionTypes.GAME_FINISHED:
             let arr = [...state.user];
-            if (arr.length>state.level-1){
+            if (arr.length > state.level - 1) {
                 arr[state.level - 1] = [...state.user[state.level - 1], state.time]
             } else {
                 arr.push([state.time])
@@ -46,7 +46,7 @@ const reducer = (state = intitialState, action) => {
             return {
                 ...state,
                 user: arr,
-                level: state.level +1,
+                level: state.level + 1,
                 lives: action.lives
             }
         case actionTypes.SUBMIT_NEW_PLAYER:
@@ -70,6 +70,10 @@ const reducer = (state = intitialState, action) => {
                 ...state,
                 pickLvl: false,
                 level: action.lvlNumber
+            }
+        case actionTypes.DATA_STORED:
+            return {
+                ...state
             }
         default: return state;
     }

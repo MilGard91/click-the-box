@@ -17,3 +17,4 @@ export const SELECT_LEVEL = 'SELECT_LEVEL';
 export const GET_DATA = 'GET_DATA';
 export const GAME_READY = 'GAME_READY';
 export const STORE_DATA = 'STORE_DATA';
+export const DATA_STORED = 'DATA_STORED';

@@ -20,12 +20,16 @@ class Stats extends Component {
     }
 
 
+    componentDidUpdate() {
+        this.props.onStoreGameData(this.props.data)
+    }
+    
     submitHandler = (event) => {
         event.preventDefault();
         this.props.onSubmit(this.state.inputValue);
-        this.props.onStoreGameData(this.props.data)
-        this.setState({ inputValue: '' })
+        this.setState({ inputValue: '' });
         event.target.reset();
+
     }
 
     inputChangeHandler = (event) => {
@@ -34,9 +38,10 @@ class Stats extends Component {
 
     render() {
 
-        console.log(this.props.data)
+
+
         let time = 0;
-        time = (this.props.gameStarted && !this.props.gameFinished)? <Timer /> : '0s';
+        time = (this.props.gameStarted && !this.props.gameFinished) ? <Timer /> : '0s';
         const modalInventory = this.props.pickPlayer ? (
             <div>
                 <p>CHOOSE A PLAYER</p>
