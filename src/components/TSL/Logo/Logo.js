@@ -1,0 +1,12 @@
+import React from 'react';
+
+import boxLogo from '../../../assets/Images/click-the-box-logo.png';
+import classes from './Logo.css'
+
+const logo =(props) => (
+    <div className={classes.Logo} style={{height:props.height}}>
+        <img src={boxLogo} alt="ClickTheBox" />
+    </div>
+)
+
+export default logo;

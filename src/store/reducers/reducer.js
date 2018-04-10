@@ -70,6 +70,36 @@ const reducer = (state = intitialState, action) => {
                 pickLvl: false,
                 level: action.lvlNumber
             }
+        case actionTypes.SWITCH_PLAYER:
+            return {
+                ...state,
+                pickPlayer: true,
+                gameStarted: false,
+                gameFinished: false,
+                finishType: '',
+                finishMessage: '',
+                nextPosition: [],
+                activePosition: [],
+                mustPosition: [],
+                lastClicked: [],
+                flaged: [],
+                counter: '~'
+            }
+        case actionTypes.SWITCH_LVL:
+            return {
+                ...state,
+                pickLvl: true,
+                gameStarted: false,
+                gameFinished: false,
+                finishType: '',
+                finishMessage: '',
+                nextPosition: [],
+                activePosition: [],
+                mustPosition: [],
+                lastClicked: [],
+                flaged: [],
+                counter: '~'
+            }
         case actionTypes.DATA_STORED:
             return {
                 ...state,
@@ -133,9 +163,9 @@ const reducer = (state = intitialState, action) => {
                     lives: state.lives + 1,
                     finishMessage: 'You finished level: ',
                     finishType: 'Win',
-                    data:{
+                    data: {
                         ...state.data,
-                        [state.selectedPlayer]:arr
+                        [state.selectedPlayer]: arr
                     },
                     user: arr,
                     newData: true

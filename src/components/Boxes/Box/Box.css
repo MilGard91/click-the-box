@@ -3,8 +3,8 @@
     height: 10%;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    border: 1px solid rgb(247, 247, 237);
+    box-sizing: border-box;    
+    border: 1px solid rgb(209, 217, 245);
     background-color: rgb(250, 250, 240);
     display: inline-block;
 }
@@ -16,6 +16,7 @@
 .BoxActivated,
 .BoxActivated:hover {
     background-color: rgb(29, 89, 93);
+    border: 1px solid rgb(247, 247, 237);
 }
 
 
@@ -23,17 +24,17 @@
 .BoxNext,
 .BoxNext:hover {
     background-color: rgb(200, 200, 85);
+    border: 1px solid rgb(247, 247, 237);
 }
-/* .BoxNext:hover {
-    background-color: rgb(200, 200, 85);
-} */
 
 .BoxMust,
 .BoxMust:hover {
     background-color: rgb(94, 95, 41);
+    border: 1px solid rgb(247, 247, 237);
 }
 
 .BoxFlaged,
 .BoxFlaged:hover {
-    background-color: rgb(146, 0, 0)
+    background-color: rgb(146, 0, 0);
+    border: 1px solid rgb(247, 247, 237);
 }

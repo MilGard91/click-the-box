@@ -74,6 +74,18 @@ export const selectLevel = (lvlNumber) => {
     }
 }
 
+export const switchPlayer = () => {
+    return {
+        type: actionTypes.SWITCH_PLAYER,
+    }
+}
+
+export const switchLvl = () => {
+    return {
+        type: actionTypes.SWITCH_LVL,
+    }
+}
+
 ///////////////GAMEPLAY///////////////////
 export const gameStart = (positionX, positionY) => {
     return {

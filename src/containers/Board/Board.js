@@ -10,23 +10,22 @@ import Button from '../../components/UI/Button/Button';
 
 
 class Board extends Component {
-    state = {
-        gameStarted: false
-    }
 
 
     render() {
         let finishMessage = this.props.finishType === 'Win' ? (
             <div>
                 <p>{this.props.finishMessage}{this.props.level-1}</p>
-                <Button btnType={"Lost"}>QUIT</Button>
+                <Button btnType={"Lost"} clicked={this.props.onSwitchPlayer}>CHANGE PLAYER</Button>
+                <Button btnType={"Lost"} clicked={this.props.onSwitchLvl}>SELECT A LEVEL</Button>
                 <Button btnType={"Win"} clicked={this.props.onNextLvl}>CONTINUE</Button>
             </div>
         ): this.props.finishType === 'Lost' ? (
             <div>
                 <p>{this.props.finishMessage}</p>
-                <Button btnType={"Lost"}>QUIT</Button>
-                <Button btnType={"Win"} clicked={this.props.onNextLvl}>CONTINUE</Button>
+                <Button btnType={"Lost"} clicked={this.props.onSwitchPlayer}>CHANGE PLAYER</Button>
+                <Button btnType={"Lost"} clicked={this.props.onSwitchLvl}>SELECT A LEVEL</Button>
+                <Button btnType={"Win"} clicked={this.props.onNextLvl}>REPLAY</Button>
             </div>
         ): null;
 
@@ -65,7 +64,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onBoxClicked: (gameStarted, positionX, positionY) => dispatch(actions.boxClicked(gameStarted, positionX, positionY)),
-        onNextLvl: () => dispatch(actions.nextLvl())
+        onNextLvl: () => dispatch(actions.nextLvl()),
+        onSwitchPlayer: () => dispatch(actions.switchPlayer()),
+        onSwitchLvl: () => dispatch(actions.switchLvl())
     }
 }
 

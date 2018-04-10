@@ -9,5 +9,7 @@ export {
     selectPlayer,
     selectLevel,
     checkGameData,
-    storeGameData
+    storeGameData,
+    switchLvl,
+    switchPlayer
 } from './actions';
