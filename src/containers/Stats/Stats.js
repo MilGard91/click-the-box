@@ -9,7 +9,6 @@ import Aux from '../../hoc/Auxiliary/Auxiliary';
 import Modal from '../../components/UI/Modal/Modal';
 import Players from '../../components/Players/Players';
 import Levels from '../../components/Levels/Levels';
-// import Button from '../../components/UI/Button/Button';
 import Form from '../../components/UI/Form/Form'
 
 
@@ -20,10 +19,11 @@ class Stats extends Component {
     }
 
 
-    componentDidUpdate() {
-        this.props.onStoreGameData(this.props.data)
+    componentWillUpdate(newProps, newState) {
+        if (newProps.newData)
+        this.props.onStoreGameData(newProps.data)
     }
-    
+
     submitHandler = (event) => {
         event.preventDefault();
         this.props.onSubmit(this.state.inputValue);
@@ -37,8 +37,6 @@ class Stats extends Component {
     }
 
     render() {
-
-
 
         let time = 0;
         time = (this.props.gameStarted && !this.props.gameFinished) ? <Timer /> : '0s';
@@ -83,27 +81,27 @@ class Stats extends Component {
 
 const mapStateToProps = state => {
     return {
-        data: state.stats.data,
-        gameStarted: state.board.gameStarted,
-        gameFinished: state.board.gameFinished,
-        counter: state.board.counter,
-        lives: state.board.lives,
-        level: state.board.level,
-        time: state.stats.time,
-        players: state.stats.data.users,
-        user: state.stats.user,
-        pickPlayer: state.stats.pickPlayer,
-        pickLvl: state.stats.pickLvl
+        newData: state.newData,
+        data: state.data,
+        gameStarted: state.gameStarted,
+        gameFinished: state.gameFinished,
+        counter: state.counter,
+        lives: state.lives,
+        level: state.level,
+        time: state.time,
+        players: state.data.users,
+        user: state.user,
+        pickPlayer: state.pickPlayer,
+        pickLvl: state.pickLvl
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        // onTimer: (gameStarted, gameFinished) => dispatch(actions.timer(gameStarted, gameFinished)),
         onSubmit: (newPlayer) => dispatch(actions.submitNewPlayer(newPlayer)),
         onSelectPlayer: (playerName) => dispatch(actions.selectPlayer(playerName)),
         onSelectLvl: (lvlNumber) => dispatch(actions.selectLevel(lvlNumber)),
-        onStoreGameData: (data) => dispatch(actions.storeGameData(data))
+        onStoreGameData: (data) => dispatch(actions.storeNewData(data))
     }
 }
 

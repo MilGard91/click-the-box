@@ -2,18 +2,12 @@ export {
     gameStart,
     gameFinished,
     boxClicked,
-    nextLvl
-} from './board';
-
-export {
+    nextLvl,
     timerTick,
+    storeNewData,
     submitNewPlayer,
     selectPlayer,
-    selectLevel
-} from './stats'
-
-
-export {
+    selectLevel,
     checkGameData,
     storeGameData
-} from './data'
+} from './actions';

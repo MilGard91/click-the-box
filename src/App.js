@@ -28,8 +28,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    data: state.stats.data,
-    gameReady: state.stats
+    data: state.data,
+    gameReady: state.gameReady
   };
 };
 

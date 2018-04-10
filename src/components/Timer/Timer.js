@@ -24,7 +24,7 @@ class Timer extends Component {
 
 const mapStateToProps = state => {
     return {
-        time: state.stats.time,
+        time: state.time,
     };
 };
 

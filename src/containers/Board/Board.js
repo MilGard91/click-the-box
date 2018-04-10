@@ -48,16 +48,16 @@ class Board extends Component {
 
 const mapStateToProps = state => {
     return {
-        gameStarted: state.board.gameStarted,
-        nextPosition: state.board.nextPosition,
-        activePosition: state.board.activePosition,
-        mustPosition: state.board.mustPosition,
-        gameFinished: state.board.gameFinished,
-        finishMessage: state.board.finishMessage,
-        flaged: state.board.flaged,
-        finishType: state.board.finishType,
-        level: state.board.level,
-        players: state.stats.data.users
+        gameStarted: state.gameStarted,
+        nextPosition: state.nextPosition,
+        activePosition: state.activePosition,
+        mustPosition: state.mustPosition,
+        gameFinished: state.gameFinished,
+        finishMessage: state.finishMessage,
+        flaged: state.flaged,
+        finishType: state.finishType,
+        level: state.level,
+        players: state.data.users
     }
 }
 
