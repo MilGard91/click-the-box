@@ -21,8 +21,10 @@ class Stats extends Component {
 
 
     componentWillUpdate(newProps, newState) {
-        if (newProps.newData)
+        if (newProps.newData){
             this.props.onStoreGameData(newProps.data)
+        }
+        console.log(this.props.showTopScores)  
     }
 
     userCheck = (users, user) => {
@@ -31,7 +33,7 @@ class Stats extends Component {
             res = 'PLEASE ENTER USERNAME';
             return res;
         }
-        if (users.length===0) {
+        if (users.length === 0) {
             res = 'PASS';
             return res
         }
@@ -56,7 +58,7 @@ class Stats extends Component {
             this.setState({ inputValue: '' });
             event.target.reset();
         } else {
-            this.setState({userMessage:check})
+            this.setState({ userMessage: check })
             this.props.onInvalidUsername();
             this.setState({ inputValue: '' });
         }
@@ -83,17 +85,22 @@ class Stats extends Component {
             this.props.pickLvl ? (
                 <div>
                     <p>CHOOSE A LEVEL</p>
-                    <Levels levels={this.props.user} lvlclicked={this.props.onSelectLvl} />
+                    <Levels levels={this.props.userlvls} lvlclicked={this.props.onSelectLvl} />
                 </div>
-            ) : this.props.wrongUsername? (
+            ) : this.props.wrongUsername ? (
                 <div>
                     <p>{this.state.userMessage}</p>
                     <Button btnType={"Win"} clicked={this.props.onRetryUsername}>RETRY</Button>
                 </div>
-            ):null;
+            ) : this.props.showTopScores ? (
+                <div style={{height: "100%"}}>
+                    <h1>Top Scores</h1>
+                    <Scores list={this.props.user} />
+                </div>
+            ) : null;
         return (
             <Aux>
-                <Modal show={this.props.pickLvl || this.props.pickPlayer || this.props.wrongUsername}>
+                <Modal show={this.props.pickLvl || this.props.pickPlayer || this.props.wrongUsername || this.props.showTopScores}>
                     {modalInventory}
                 </Modal>
                 <div className={classes.Stats}>
@@ -102,10 +109,6 @@ class Stats extends Component {
                     <div> Clicks left: <span style={{ color: 'red' }}>{this.props.counter} </span> </div>
                     <div> Lives: <span style={{ color: 'green' }}>{this.props.lives}</span> </div>
                     <div> Level: <span style={{ color: 'green' }}>{this.props.level}</span> </div>
-                    {/* <div>
-                        <h1>Top Scores</h1>
-                        <Scores list={this.props.user} />
-                    </div> */}
                 </div>
             </Aux>
 
@@ -127,19 +130,21 @@ const mapStateToProps = state => {
         user: state.user,
         pickPlayer: state.pickPlayer,
         pickLvl: state.pickLvl,
-        wrongUsername: state.wrongUsername
+        wrongUsername: state.wrongUsername,
+        showTopScores: state.showTopScores,
+        userlvls: state.userlevels
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         onSubmit: (newPlayer) => dispatch(actions.submitNewPlayer(newPlayer)),
-        onSelectPlayer: (playerName) => dispatch(actions.selectPlayer(playerName)),
+        onSelectPlayer: (playerName, playerIndex) => dispatch(actions.selectPlayer(playerName, playerIndex)),
         onDeletePlayer: (playerName, index) => dispatch(actions.deletePlayer(playerName, index)),
         onSelectLvl: (lvlNumber) => dispatch(actions.selectLevel(lvlNumber)),
         onStoreGameData: (data) => dispatch(actions.storeNewData(data)),
-        onInvalidUsername: () => dispatch (actions.invalidUsername()),
-        onRetryUsername: () => dispatch (actions.retryUsername())
+        onInvalidUsername: () => dispatch(actions.invalidUsername()),
+        onRetryUsername: () => dispatch(actions.retryUsername())
     }
 }
 

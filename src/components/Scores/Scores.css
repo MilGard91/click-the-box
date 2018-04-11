@@ -1,5 +1,5 @@
 .Scores {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
+    height: 100%;
+    display: block;
+    overflow-y:scroll;
 }

@@ -9,6 +9,7 @@
     padding: 16px;
     left: 15%;
     top: 30%;
+    max-height: 40%;
     box-sizing: border-box;
     transition: all 0.3s ease-out;
     border-radius: 30px;

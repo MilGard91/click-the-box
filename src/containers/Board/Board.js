@@ -27,6 +27,12 @@ class Board extends Component {
                 <Button btnType={"Lost"} clicked={this.props.onSwitchLvl}>SELECT A LEVEL</Button>
                 <Button btnType={"Win"} clicked={this.props.onNextLvl}>REPLAY</Button>
             </div>
+        ): this.props.finishType === 'AllLost' ? (
+            <div>
+                <p>{this.props.finishMessage}</p>
+                <Button btnType={"Lost"} clicked={this.props.onSwitchPlayer}>CHANGE PLAYER</Button>
+                <Button btnType={"Win"} clicked={this.props.onNextLvl}>START OVER</Button>
+            </div>
         ): null;
 
         return (

@@ -8,9 +8,9 @@ const Players = (props) => {
 
         playerList = props.players.map((el, i) => (
             <Player 
-            key={el} 
+            key={el[0]} 
             user={el[0]}
-            clicked={()=>props.select(el[0])}
+            clicked={()=>props.select(el[0], i)}
             deleted={()=> props.delete(el[0],i)} />
         ))
     return (

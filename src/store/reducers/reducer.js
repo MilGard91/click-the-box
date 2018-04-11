@@ -6,19 +6,22 @@ const intitialState = {
     gameReady: false,
 
     time: 0,
-    topScore: '',
     counter: '~',
     newData: false,
     data: {
         users: []
     },
     selectedPlayer: '',
+    selectedPlayerIndex: null,
     wrongUsername: false,
     user: [],
+    userlevels: [],
     pickLvl: false,
     pickPlayer: true,
     lives: 1,
     level: 1,
+    topScore: '',
+    showTopScores: false,
 
     gameStarted: false,
     gameFinished: false,
@@ -73,6 +76,8 @@ const reducer = (state = intitialState, action) => {
             return {
                 ...state,
                 selectedPlayer: action.playerName,
+                selectedPlayerIndex: action.playerIndex,
+                lives: state.data.users[action.playerIndex][1],
                 user: [...state.data[action.playerName]],
                 pickPlayer: false,
                 pickLvl: true,
@@ -114,15 +119,15 @@ const reducer = (state = intitialState, action) => {
                 counter: '~'
             }
         case actionTypes.DELETE_PLAYER:
-            let deletePlayerData = {...state.data};
+            let deletePlayerData = { ...state.data };
             delete deletePlayerData[action.playerName];
             let deletePlayerArr = [...state.data.users];
-            deletePlayerArr.splice(action.index,1);
+            deletePlayerArr.splice(action.index, 1);
             deletePlayerData.users = deletePlayerArr;
-            return{
+            return {
                 ...state,
                 data: deletePlayerData,
-                newData:true
+                newData: true
             }
         case actionTypes.DATA_STORED:
             return {
@@ -180,6 +185,11 @@ const reducer = (state = intitialState, action) => {
                 } else {
                     arr.push([state.time])
                 }
+                let userNewData = [...state.data.users[state.selectedPlayerIndex]];
+                userNewData[1] = userNewData[1] + 1;
+                let usersNewData = [...state.data.users];
+                usersNewData[state.selectedPlayerIndex] = userNewData;
+                let userlvls = [...state.userlevels, state.level + 1]
                 return {
                     ...state,
                     gameFinished: true,
@@ -189,18 +199,46 @@ const reducer = (state = intitialState, action) => {
                     finishType: 'Win',
                     data: {
                         ...state.data,
+                        users: usersNewData,
                         [state.selectedPlayer]: arr
                     },
                     user: arr,
+                    userlevels: userlvls,
                     newData: true
                 }
             } else if (state.nextPosition.length === 0 && !utility.isItInArray(state.nextPosition, action.position)) {
-                return {
-                    ...state,
-                    gameFinished: true,
-                    finishMessage: 'You lost! :(',
-                    finishType: 'Lost',
-                    lives: state.lives - state.counter
+                if ((state.lives - state.counter) <= 0) {
+                    let userNewData = [...state.data.users[state.selectedPlayerIndex]];
+                    userNewData[1] = 1;
+                    let usersNewData = [...state.data.users];
+                    usersNewData[state.selectedPlayerIndex] = userNewData;
+                    return {
+                        ...state,
+                        data: {
+                            ...state.data,
+                            users: usersNewData,
+                        },
+                        gameFinished: true,
+                        finishMessage: 'YOU LOST ALL YOUR LIVES :(',
+                        finishType: 'AllLost',
+                        lives: 1,
+                        level: 1,
+                        userlevels: [],
+                        newData: true,
+                    }
+                } else {
+                    let userNewData = [...state.data.users[state.selectedPlayerIndex]];
+                    userNewData[1] = userNewData[1] - state.counter;
+                    let usersNewData = [...state.data.users];
+                    usersNewData[state.selectedPlayerIndex] = userNewData;
+                    let userlvls = [...state.userlevels, state.level + 1]
+                    return {
+                        ...state,
+                        gameFinished: true,
+                        finishMessage: 'You lost! :(',
+                        finishType: 'Lost',
+                        lives: state.lives - state.counter
+                    }
                 }
             } else return {
                 ...state
@@ -219,6 +257,11 @@ const reducer = (state = intitialState, action) => {
                 flaged: [],
                 counter: '~'
             };
+        case actionTypes.SHOW_TOP_SCORES:
+            return {
+                ...state,
+                showTopScores: !state.showTopScores
+            }
         default: return state;
     }
 }

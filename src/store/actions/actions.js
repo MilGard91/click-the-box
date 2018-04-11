@@ -72,10 +72,11 @@ export const retryUsername = () => {
     }
 }
 
-export const selectPlayer = (playerName) => {
+export const selectPlayer = (playerName, playerIndex) => {
     return {
         type: actionTypes.SELECT_PLAYER,
-        playerName: playerName
+        playerName: playerName,
+        playerIndex: playerIndex
     }
 }
 
@@ -167,5 +168,12 @@ export const timerTick = () => {
     };
 };
 
+////////////TOP SCORES//////////////////
+
+export const showTopScores = () => {
+    return {
+        type: actionTypes.SHOW_TOP_SCORES
+    }
+}
 
 

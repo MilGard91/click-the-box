@@ -42,9 +42,25 @@
         height: 900px;
     }
 }
+@media (min-width: 639px) {
+    .Layout{
+        height: 410px;
+    }
+}
+
+@media (min-width: 766px) {
+    .Layout {
+        height: 500px;
+    }
+}
 @media (min-width: 767px) and (min-height:1000px) {
     .Layout {
         height: 9500px;
+    }
+}
+@media (min-width: 799px) {
+    .Layout {
+        height: 560px;
     }
 }
 

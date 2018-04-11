@@ -8,7 +8,7 @@
     box-sizing: border-box;
     background-color: transparent;
     border: none;
-    color: purple;
+    color: rgb(40, 40, 255);
     font: inherit;
     outline: none;
     padding: 10px;
@@ -20,6 +20,6 @@
 }
 
 .Player:hover{
-    color: violet;
+    color: rgb(0, 185, 185);
 }
 
