@@ -14,12 +14,12 @@ const intitialState = {
     selectedPlayer: '',
     selectedPlayerIndex: null,
     wrongUsername: false,
-    user: [],
-    userlevels: [],
-    pickLvl: false,
-    pickPlayer: true,
+    scores: [],
+    userlevels: 1,
     lives: 1,
     level: 1,
+    pickLvl: false,
+    pickPlayer: true,
     topScore: '',
     showTopScores: false,
 
@@ -55,8 +55,12 @@ const reducer = (state = intitialState, action) => {
                 ...state,
                 data: {
                     ...state.data,
-                    users: [...state.data.users, [action.newPlayer, 1]],
-                    [action.newPlayer]: [],
+                    users: [...state.data.users, action.newPlayer],
+                    [action.newPlayer]: {
+                        scores: [],
+                        lives: 1,
+                        levels: 1
+                    },
                 },
                 newData: true
             }
@@ -77,12 +81,14 @@ const reducer = (state = intitialState, action) => {
                 ...state,
                 selectedPlayer: action.playerName,
                 selectedPlayerIndex: action.playerIndex,
-                lives: state.data.users[action.playerIndex][1],
-                user: [...state.data[action.playerName]],
+                lives: state.data[action.playerName].lives,
+                userlevels: state.data[action.playerName].levels,
+                scores: [...state.data[action.playerName].scores],
                 pickPlayer: false,
                 pickLvl: true,
             }
         case actionTypes.SELECT_LEVEL:
+            console.log()
             return {
                 ...state,
                 pickLvl: false,
@@ -127,7 +133,8 @@ const reducer = (state = intitialState, action) => {
             return {
                 ...state,
                 data: deletePlayerData,
-                newData: true
+                newData: true,
+
             }
         case actionTypes.DATA_STORED:
             return {
@@ -179,65 +186,78 @@ const reducer = (state = intitialState, action) => {
         case actionTypes.GAME_FINISH:
             if (state.nextPosition.length === 0 && state.mustPosition.length === 0 && state.finishType !== 'Lost') {
 
-                let arr = [...state.user];
+                let arr = [...state.scores];
                 if (arr.length > state.level - 1) {
-                    arr[state.level - 1] = [...state.user[state.level - 1], state.time]
+                    arr[state.level - 1] = [...state.scores[state.level - 1], state.time]
                 } else {
                     arr.push([state.time])
                 }
-                let userNewData = [...state.data.users[state.selectedPlayerIndex]];
-                userNewData[1] = userNewData[1] + 1;
-                let usersNewData = [...state.data.users];
-                usersNewData[state.selectedPlayerIndex] = userNewData;
-                let userlvls = [...state.userlevels, state.level + 1]
+                ////
+                let newLevels = state.userlevels
+                if (!(state.level < state.userlevels)) {
+                    newLevels++
+                }
+                let newLives = state.lives + 1;
                 return {
                     ...state,
                     gameFinished: true,
                     level: state.level + 1,
-                    lives: state.lives + 1,
                     finishMessage: 'You finished level: ',
                     finishType: 'Win',
+                    scores: arr,
+                    userlevels: newLevels,
+                    lives: newLives,
                     data: {
                         ...state.data,
-                        users: usersNewData,
-                        [state.selectedPlayer]: arr
+                        [state.selectedPlayer]: {
+                            ...state.data[state.selectedPlayer],
+                            scores: arr,
+                            lives: newLives,
+                            levels: newLevels,
+                        },
                     },
-                    user: arr,
-                    userlevels: userlvls,
                     newData: true
                 }
             } else if (state.nextPosition.length === 0 && !utility.isItInArray(state.nextPosition, action.position)) {
+                console.log(state.lives);
+                console.log(state.counter);
+                console.log(state.lives - state.counter);
                 if ((state.lives - state.counter) <= 0) {
-                    let userNewData = [...state.data.users[state.selectedPlayerIndex]];
-                    userNewData[1] = 1;
-                    let usersNewData = [...state.data.users];
-                    usersNewData[state.selectedPlayerIndex] = userNewData;
                     return {
                         ...state,
                         data: {
                             ...state.data,
-                            users: usersNewData,
+                            [state.selectedPlayer]: {
+                                ...state.data[state.selectedPlayer],
+                                lives: 1,
+                                levels: 1
+                            }
                         },
                         gameFinished: true,
                         finishMessage: 'YOU LOST ALL YOUR LIVES :(',
                         finishType: 'AllLost',
-                        lives: 1,
                         level: 1,
-                        userlevels: [],
+                        userlevels: 1,
                         newData: true,
                     }
-                } else {
-                    let userNewData = [...state.data.users[state.selectedPlayerIndex]];
-                    userNewData[1] = userNewData[1] - state.counter;
-                    let usersNewData = [...state.data.users];
-                    usersNewData[state.selectedPlayerIndex] = userNewData;
-                    let userlvls = [...state.userlevels, state.level + 1]
+                }
+                else {
+                    console.log('pisa')
+                    let newLives = state.lives - state.counter;
                     return {
                         ...state,
                         gameFinished: true,
                         finishMessage: 'You lost! :(',
                         finishType: 'Lost',
-                        lives: state.lives - state.counter
+                        lives: newLives,
+                        data: {
+                            ...state.data,
+                            [state.selectedPlayer]: {
+                                ...state.data[state.selectedPlayer],
+                                lives: newLives
+                            }
+                        },
+                        newData: true
                     }
                 }
             } else return {

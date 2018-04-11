@@ -24,8 +24,8 @@ class Stats extends Component {
         if (newProps.newData){
             this.props.onStoreGameData(newProps.data)
         }
-        console.log(this.props.showTopScores)  
     }
+
 
     userCheck = (users, user) => {
         let check, res;
@@ -95,7 +95,7 @@ class Stats extends Component {
             ) : this.props.showTopScores ? (
                 <div style={{height: "100%"}}>
                     <h1>Top Scores</h1>
-                    <Scores list={this.props.user} />
+                    <Scores list={this.props.scores} />
                 </div>
             ) : null;
         return (
@@ -118,6 +118,7 @@ class Stats extends Component {
 
 const mapStateToProps = state => {
     return {
+        state:state,
         newData: state.newData,
         data: state.data,
         gameStarted: state.gameStarted,
@@ -127,7 +128,7 @@ const mapStateToProps = state => {
         level: state.level,
         time: state.time,
         players: state.data.users,
-        user: state.user,
+        scores: state.scores,
         pickPlayer: state.pickPlayer,
         pickLvl: state.pickLvl,
         wrongUsername: state.wrongUsername,
