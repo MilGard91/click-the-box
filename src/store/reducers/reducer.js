@@ -113,6 +113,17 @@ const reducer = (state = intitialState, action) => {
                 flaged: [],
                 counter: '~'
             }
+        case actionTypes.DELETE_PLAYER:
+            let deletePlayerData = {...state.data};
+            delete deletePlayerData[action.playerName];
+            let deletePlayerArr = [...state.data.users];
+            deletePlayerArr.splice(action.index,1);
+            deletePlayerData.users = deletePlayerArr;
+            return{
+                ...state,
+                data: deletePlayerData,
+                newData:true
+            }
         case actionTypes.DATA_STORED:
             return {
                 ...state,

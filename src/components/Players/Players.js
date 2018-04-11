@@ -6,8 +6,12 @@ import Player from './Player/Player';
 const Players = (props) => {
     let playerList;
 
-        playerList = props.players.map(el => (
-            <Player key={el} user={el[0]} clicked={()=>props.select(el[0])} />
+        playerList = props.players.map((el, i) => (
+            <Player 
+            key={el} 
+            user={el[0]}
+            clicked={()=>props.select(el[0])}
+            deleted={()=> props.delete(el[0],i)} />
         ))
     return (
         <div className = {classes.Players}>

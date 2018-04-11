@@ -1,14 +1,22 @@
+.PlayerContainer {
+    display: flex;
+    align-items: center;
+}
+
+
 .Player {
+    box-sizing: border-box;
     background-color: transparent;
     border: none;
     color: purple;
     font: inherit;
-    display: block;
     outline: none;
     padding: 10px;
     margin: 5px;
     text-transform: uppercase;
     cursor: pointer;
+    width: 90%;
+    margin-right: 0;
 }
 
 .Player:hover{

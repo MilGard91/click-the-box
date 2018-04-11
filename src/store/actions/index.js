@@ -8,6 +8,7 @@ export {
     submitNewPlayer,
     selectPlayer,
     selectLevel,
+    deletePlayer,
     checkGameData,
     storeGameData,
     switchLvl,

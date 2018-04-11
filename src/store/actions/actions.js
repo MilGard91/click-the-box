@@ -49,11 +49,11 @@ export const storeNewData = (gameData) => {
 
 export const storingComplete = () => {
     return {
-        type:actionTypes.DATA_STORED
+        type: actionTypes.DATA_STORED
     }
 }
 export const submitNewPlayer = (newPlayer) => {
-    
+
     return {
         type: actionTypes.SUBMIT_NEW_PLAYER,
         newPlayer: newPlayer,
@@ -97,7 +97,13 @@ export const switchLvl = () => {
         type: actionTypes.SWITCH_LVL,
     }
 }
-
+export const deletePlayer = (playerName, index) => {
+    return {
+        type: actionTypes.DELETE_PLAYER,
+        playerName: playerName,
+        index: index
+    }
+}
 ///////////////GAMEPLAY///////////////////
 export const gameStart = (positionX, positionY) => {
     return {

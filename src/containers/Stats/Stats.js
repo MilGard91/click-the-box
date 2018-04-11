@@ -74,7 +74,7 @@ class Stats extends Component {
         const modalInventory = this.props.pickPlayer ? (
             <div>
                 <p>CHOOSE A PLAYER</p>
-                <Players players={this.props.players} select={this.props.onSelectPlayer} />
+                <Players players={this.props.players} select={this.props.onSelectPlayer} delete={this.props.onDeletePlayer} />
                 <Form
                     submit={this.submitHandler}
                     changed={this.inputChangeHandler} />
@@ -135,6 +135,7 @@ const mapDispatchToProps = dispatch => {
     return {
         onSubmit: (newPlayer) => dispatch(actions.submitNewPlayer(newPlayer)),
         onSelectPlayer: (playerName) => dispatch(actions.selectPlayer(playerName)),
+        onDeletePlayer: (playerName, index) => dispatch(actions.deletePlayer(playerName, index)),
         onSelectLvl: (lvlNumber) => dispatch(actions.selectLevel(lvlNumber)),
         onStoreGameData: (data) => dispatch(actions.storeNewData(data)),
         onInvalidUsername: () => dispatch (actions.invalidUsername()),
