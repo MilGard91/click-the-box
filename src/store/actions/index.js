@@ -11,5 +11,7 @@ export {
     checkGameData,
     storeGameData,
     switchLvl,
-    switchPlayer
+    switchPlayer,
+    invalidUsername,
+    retryUsername
 } from './actions';

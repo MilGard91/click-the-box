@@ -9,7 +9,8 @@ import Aux from '../../hoc/Auxiliary/Auxiliary';
 import Modal from '../../components/UI/Modal/Modal';
 import Players from '../../components/Players/Players';
 import Levels from '../../components/Levels/Levels';
-import Form from '../../components/UI/Form/Form'
+import Form from '../../components/UI/Form/Form';
+import Button from '../../components/UI/Button/Button';
 
 
 class Stats extends Component {
@@ -21,14 +22,44 @@ class Stats extends Component {
 
     componentWillUpdate(newProps, newState) {
         if (newProps.newData)
-        this.props.onStoreGameData(newProps.data)
+            this.props.onStoreGameData(newProps.data)
+    }
+
+    userCheck = (users, user) => {
+        let check, res;
+        if (user === '') {
+            res = 'PLEASE ENTER USERNAME';
+            return res;
+        }
+        if (users.length===0) {
+            res = 'PASS';
+            return res
+        }
+        check = user.replace(/\./g, '\\\.');
+        check = '\\b' + check + '\\b'
+        check = new RegExp(check, 'i');
+        res = 'PASS';
+        for (let i = 0; i < users.length; i++) {
+            if (users[i][0].match(check)) {
+                res = 'USERNAME ALREADY EXISTS';
+                break;
+            }
+        }
+        return res;
     }
 
     submitHandler = (event) => {
         event.preventDefault();
-        this.props.onSubmit(this.state.inputValue);
-        this.setState({ inputValue: '' });
-        event.target.reset();
+        let check = (this.userCheck(this.props.players, this.state.inputValue))
+        if (check === 'PASS') {
+            this.props.onSubmit(this.state.inputValue);
+            this.setState({ inputValue: '' });
+            event.target.reset();
+        } else {
+            this.setState({userMessage:check})
+            this.props.onInvalidUsername();
+            this.setState({ inputValue: '' });
+        }
 
     }
 
@@ -54,24 +85,27 @@ class Stats extends Component {
                     <p>CHOOSE A LEVEL</p>
                     <Levels levels={this.props.user} lvlclicked={this.props.onSelectLvl} />
                 </div>
-            ) : null;
+            ) : this.props.wrongUsername? (
+                <div>
+                    <p>{this.state.userMessage}</p>
+                    <Button btnType={"Win"} clicked={this.props.onRetryUsername}>RETRY</Button>
+                </div>
+            ):null;
         return (
             <Aux>
-                <Modal show={this.props.pickLvl || this.props.pickPlayer}>
+                <Modal show={this.props.pickLvl || this.props.pickPlayer || this.props.wrongUsername}>
                     {modalInventory}
                 </Modal>
                 <div className={classes.Stats}>
-                    <div>
-                        <h1> Game Stats </h1>
-                        <p> Timer: {time}</p>
-                        <p> Clicks left: <span style={{ color: 'red' }}>{this.props.counter} </span> </p>
-                        <p> Lives: <span style={{ color: 'green' }}>{this.props.lives}</span> </p>
-                        <p> Level: <span style={{ color: 'green' }}>{this.props.level}</span> </p>
-                    </div>
-                    <div>
+                    <h4> Game Stats </h4>
+                    <div> Timer: {time}</div>
+                    <div> Clicks left: <span style={{ color: 'red' }}>{this.props.counter} </span> </div>
+                    <div> Lives: <span style={{ color: 'green' }}>{this.props.lives}</span> </div>
+                    <div> Level: <span style={{ color: 'green' }}>{this.props.level}</span> </div>
+                    {/* <div>
                         <h1>Top Scores</h1>
                         <Scores list={this.props.user} />
-                    </div>
+                    </div> */}
                 </div>
             </Aux>
 
@@ -92,7 +126,8 @@ const mapStateToProps = state => {
         players: state.data.users,
         user: state.user,
         pickPlayer: state.pickPlayer,
-        pickLvl: state.pickLvl
+        pickLvl: state.pickLvl,
+        wrongUsername: state.wrongUsername
     }
 }
 
@@ -101,7 +136,9 @@ const mapDispatchToProps = dispatch => {
         onSubmit: (newPlayer) => dispatch(actions.submitNewPlayer(newPlayer)),
         onSelectPlayer: (playerName) => dispatch(actions.selectPlayer(playerName)),
         onSelectLvl: (lvlNumber) => dispatch(actions.selectLevel(lvlNumber)),
-        onStoreGameData: (data) => dispatch(actions.storeNewData(data))
+        onStoreGameData: (data) => dispatch(actions.storeNewData(data)),
+        onInvalidUsername: () => dispatch (actions.invalidUsername()),
+        onRetryUsername: () => dispatch (actions.retryUsername())
     }
 }
 

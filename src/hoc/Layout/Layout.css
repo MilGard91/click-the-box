@@ -1,33 +1,55 @@
 .Layout {
-    margin-top: 72px;
-}
-/* Big tablets to 1200px*/
-@media only screen and (max-width:1200px){
-    
-    
-}
-
-
-
-/* Small tablets to big tablets from 768px to 1023px*/
-@media only screen and (max-width:1023px){
-    
+    top: 0;
+    left: 0;
+    margin-top:56px;
+    width: 100%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
 }
 
+@media  (min-width:359px) and (min-height: 639px){
+    .Layout{
+        height: 590px;}
 
-
-
-
-/* Small phones to small tablets from 481px to 767px*/
-@media only screen and (max-width:767px) {
-    
+}
+@media (min-width:374px) {
+    .Layout{
+        height: 605px;
+    }
 }
 
+@media (max-width: 380px) and (min-height:800px) {
+    .Layout {
+        height: 780px;
+    }
+}
 
+@media(min-width: 410px) {
+    .Layout {
+        height: 700px;
+    }
+}
 
+@media (max-width:420px) and (min-height:820px) {
+    .Layout{
+        height: 750px
+    }
+}
 
+@media(min-width: 599px) {
+    .Layout {
+        height: 900px;
+    }
+}
+@media (min-width: 767px) and (min-height:1000px) {
+    .Layout {
+        height: 9500px;
+    }
+}
 
-/* Small phones from 0 to 480px*/
-@media only screen and (max-width:480px) {
-    
+@media (min-width: 1023px) {
+    .Layout {
+        height: 700px;
+    }
 }

@@ -13,6 +13,7 @@ const intitialState = {
         users: []
     },
     selectedPlayer: '',
+    wrongUsername: false,
     user: [],
     pickLvl: false,
     pickPlayer: true,
@@ -55,6 +56,18 @@ const reducer = (state = intitialState, action) => {
                     [action.newPlayer]: [],
                 },
                 newData: true
+            }
+        case actionTypes.INVALID_USERNAME:
+            return {
+                ...state,
+                wrongUsername: true,
+                pickPlayer: false
+            }
+        case actionTypes.RETRY_USERNAME:
+            return {
+                ...state,
+                wrongUsername: false,
+                pickPlayer: true
             }
         case actionTypes.SELECT_PLAYER:
             return {

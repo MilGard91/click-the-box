@@ -8,7 +8,6 @@ const toolbar = (props) => (
     <header className={classes.Toolbar}>
         <Logo />
         <ModalButtons />
-        <div>MENU</div>
     </header>
 )
 

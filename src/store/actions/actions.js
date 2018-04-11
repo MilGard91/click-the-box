@@ -60,6 +60,18 @@ export const submitNewPlayer = (newPlayer) => {
     }
 }
 
+export const invalidUsername = () => {
+    return {
+        type: actionTypes.INVALID_USERNAME
+    }
+}
+
+export const retryUsername = () => {
+    return {
+        type: actionTypes.RETRY_USERNAME
+    }
+}
+
 export const selectPlayer = (playerName) => {
     return {
         type: actionTypes.SELECT_PLAYER,
