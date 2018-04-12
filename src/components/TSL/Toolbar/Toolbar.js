@@ -7,7 +7,7 @@ import ModalButtons from '../ModalButtons/ModalButtons';
 const toolbar = (props) => (
     <header className={classes.Toolbar}>
         <Logo />
-        <ModalButtons clicked={props.clicked}/>
+        <ModalButtons clicked={props.clicked} activated={props.activated}/>
     </header>
 )
 

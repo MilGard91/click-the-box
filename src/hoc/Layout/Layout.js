@@ -12,7 +12,7 @@ class Layout extends Component {
     render() {
         return (
             <Aux>
-                <Toolbar clicked={this.props.onShowTopScores}/>
+                <Toolbar clicked={this.props.onShowTopScores} activated={this.props.showTopScores}/>
                 <main className={classes.Layout}>
                     <Board />
                     <Stats />
@@ -23,10 +23,16 @@ class Layout extends Component {
     }
 };
 
+const mapStateToProps = state => {
+    return {
+        showTopScores: state.showTopScores
+    }
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         onShowTopScores: () => dispatch(actions.showTopScores())
     }
 }
 
-export default connect(null, mapDispatchToProps) (Layout);
+export default connect(mapStateToProps, mapDispatchToProps) (Layout);

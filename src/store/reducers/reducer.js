@@ -15,6 +15,8 @@ const intitialState = {
     selectedPlayerIndex: null,
     wrongUsername: false,
     scores: [],
+    levelScores:[],
+    levelScore: [],
     userlevels: 1,
     lives: 1,
     level: 1,
@@ -22,6 +24,8 @@ const intitialState = {
     pickPlayer: true,
     topScore: '',
     showTopScores: false,
+    showCharts: false,
+    chartLevel: [],
 
     gameStarted: false,
     gameFinished: false,
@@ -59,7 +63,8 @@ const reducer = (state = intitialState, action) => {
                     [action.newPlayer]: {
                         scores: [],
                         lives: 1,
-                        levels: 1
+                        levels: 1,
+                        levelScores:[]
                     },
                 },
                 newData: true
@@ -84,6 +89,7 @@ const reducer = (state = intitialState, action) => {
                 lives: state.data[action.playerName].lives,
                 userlevels: state.data[action.playerName].levels,
                 scores: [...state.data[action.playerName].scores],
+                levelScores: [...state.data[action.playerName].levelScores],
                 pickPlayer: false,
                 pickLvl: true,
             }
@@ -180,6 +186,7 @@ const reducer = (state = intitialState, action) => {
                 activePosition: [...state.activePosition, action.position],
                 mustPosition: algorithms.positionClicked(action.position, state.mustPosition),
                 nextPosition: algorithms.nextMoves([action.position], algorithms.positionClicked(action.position, state.mustPosition)),
+                levelScore: [...state.levelScore, state.time]
 
             }
         case actionTypes.GAME_FINISH:
@@ -191,6 +198,25 @@ const reducer = (state = intitialState, action) => {
                 } else {
                     arr.push([state.time])
                 }
+                /////
+                let newLvlScore =[], newLvlScores =[];
+                newLvlScores=[...state.levelScores]
+                console.log(state.levelScore)
+                if (state.level>state.levelScores.length) {
+                    console.log("test1")
+                    newLvlScore = [...state.levelScore]
+                    newLvlScores.push(newLvlScore)
+                } else if(state.levelScore[state.level-1]<state.levelScores[state.level-1][state.level-1]){
+                    console.log("test2")
+                    newLvlScore = [...state.levelScore]
+                    newLvlScores[state.level-1]=newLvlScore
+                } else {
+                    newLvlScore = [...state.levelScores[state.level-1]]
+                    newLvlScores[state.level-1]=newLvlScore;
+                }
+                console.log(newLvlScore)
+                
+                console.log(newLvlScores)
                 ////
                 let newLevels = state.userlevels
                 if (!(state.level < state.userlevels)) {
@@ -204,6 +230,8 @@ const reducer = (state = intitialState, action) => {
                     finishMessage: 'You finished level: ',
                     finishType: 'Win',
                     scores: arr,
+                    levelScores: newLvlScores,
+                    levelScore:[],
                     userlevels: newLevels,
                     lives: newLives,
                     data: {
@@ -213,6 +241,7 @@ const reducer = (state = intitialState, action) => {
                             scores: arr,
                             lives: newLives,
                             levels: newLevels,
+                            levelScores: newLvlScores
                         },
                     },
                     newData: true
@@ -278,6 +307,13 @@ const reducer = (state = intitialState, action) => {
             return {
                 ...state,
                 showTopScores: !state.showTopScores
+            }
+        case actionTypes.SHOW_CHARTS:
+            return {
+                ...state,
+                showTopScores: !state.showTopScores,
+                showCharts: !state.showCharts,
+                chartLevel: [...state.levelScores[action.chartLevel-1]]
             }
         default: return state;
     }

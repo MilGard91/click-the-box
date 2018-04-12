@@ -1,0 +1,21 @@
+.Grid {
+    stroke: #ccc;
+    stroke-dasharray: 0;
+    stroke-width: 1;
+  }
+
+.Click {
+    fill: red;
+    stroke-width: 4; 
+}
+
+.Lines {
+    stroke: rgb(116, 116, 116);
+    stroke-dasharray: 0;
+    stroke-width: 1;
+  }
+
+  .Labels {
+    text-anchor: middle;
+    font-size: 12px;
+  }

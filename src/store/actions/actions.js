@@ -105,6 +105,17 @@ export const deletePlayer = (playerName, index) => {
         index: index
     }
 }
+/////////////CHARTS/////////////////////
+export const showCharts = (chartLevel) => {
+    return {
+        type:actionTypes.SHOW_CHARTS,
+        chartLevel: chartLevel
+    }
+}
+
+
+
+
 ///////////////GAMEPLAY///////////////////
 export const gameStart = (positionX, positionY) => {
     return {

@@ -1,5 +1,19 @@
 .Scores {
-    height: 100%;
-    display: block;
-    overflow-y:scroll;
+    height: 150px;
+    width: 100%;
+    overflow: auto;
+}
+
+.ScoreTable {
+    width: 100%;
+    overflow: auto;
+}
+
+
+.ScoreTable th{
+    color: rgb(142, 172 , 174);
+}
+
+.ScoreTable tr td {
+    border-bottom: rgb(142, 172 , 174);
 }

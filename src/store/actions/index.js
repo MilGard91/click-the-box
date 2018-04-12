@@ -15,5 +15,6 @@ export {
     switchPlayer,
     invalidUsername,
     retryUsername,
-    showTopScores
+    showTopScores,
+    showCharts
 } from './actions';

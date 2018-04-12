@@ -11,7 +11,7 @@ import Players from '../../components/Players/Players';
 import Levels from '../../components/Levels/Levels';
 import Form from '../../components/UI/Form/Form';
 import Button from '../../components/UI/Button/Button';
-
+import Chart from '../../components/Scores/Chart/Chart';
 
 class Stats extends Component {
 
@@ -21,7 +21,7 @@ class Stats extends Component {
 
 
     componentWillUpdate(newProps, newState) {
-        if (newProps.newData){
+        if (newProps.newData) {
             this.props.onStoreGameData(newProps.data)
         }
     }
@@ -93,16 +93,22 @@ class Stats extends Component {
                     <Button btnType={"Win"} clicked={this.props.onRetryUsername}>RETRY</Button>
                 </div>
             ) : this.props.showTopScores ? (
-                <div style={{height: "100%"}}>
-                    <h1>Top Scores</h1>
-                    <Scores list={this.props.scores} />
+                <div style={{ height: "100%" }}>
+                    <h2>TOP SCORES</h2>
+                    <Scores list={this.props.scores} clicked={this.props.onShowCharts} />
+                </div>
+            ) : this.props.showCharts ? (
+                <div style={{ height: "100%" }}>
+                    <h2>LEVEL {this.props.chartLevel.length}</h2>
+                    <Chart times={this.props.chartLevel}/>
                 </div>
             ) : null;
         return (
             <Aux>
-                <Modal show={this.props.pickLvl || this.props.pickPlayer || this.props.wrongUsername || this.props.showTopScores}>
+                <Modal show={this.props.pickLvl || this.props.pickPlayer || this.props.wrongUsername || this.props.showTopScores || this.props.showCharts}>
                     {modalInventory}
                 </Modal>
+
                 <div className={classes.Stats}>
                     <h4> Game Stats </h4>
                     <div> Timer: {time}</div>
@@ -118,7 +124,7 @@ class Stats extends Component {
 
 const mapStateToProps = state => {
     return {
-        state:state,
+        state: state,
         newData: state.newData,
         data: state.data,
         gameStarted: state.gameStarted,
@@ -133,7 +139,9 @@ const mapStateToProps = state => {
         pickLvl: state.pickLvl,
         wrongUsername: state.wrongUsername,
         showTopScores: state.showTopScores,
-        userlvls: state.userlevels
+        userlvls: state.userlevels,
+        chartLevel: state.chartLevel,
+        showCharts: state.showCharts
     }
 }
 
@@ -145,7 +153,8 @@ const mapDispatchToProps = dispatch => {
         onSelectLvl: (lvlNumber) => dispatch(actions.selectLevel(lvlNumber)),
         onStoreGameData: (data) => dispatch(actions.storeNewData(data)),
         onInvalidUsername: () => dispatch(actions.invalidUsername()),
-        onRetryUsername: () => dispatch(actions.retryUsername())
+        onRetryUsername: () => dispatch(actions.retryUsername()),
+        onShowCharts: (chartLevel) => dispatch(actions.showCharts(chartLevel))
     }
 }
 
