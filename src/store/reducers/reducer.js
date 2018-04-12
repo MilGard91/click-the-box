@@ -173,7 +173,6 @@ const reducer = (state = intitialState, action) => {
                 gameFinished: true,
                 flaged: [action.position],
                 finishType: 'Lost',
-                lives: state.lives - state.counter
             }
         case actionTypes.BOX_ACTIVATED:
             return {
@@ -181,7 +180,7 @@ const reducer = (state = intitialState, action) => {
                 activePosition: [...state.activePosition, action.position],
                 mustPosition: algorithms.positionClicked(action.position, state.mustPosition),
                 nextPosition: algorithms.nextMoves([action.position], algorithms.positionClicked(action.position, state.mustPosition)),
-                counter: state.counter - 1,
+
             }
         case actionTypes.GAME_FINISH:
             if (state.nextPosition.length === 0 && state.mustPosition.length === 0 && state.finishType !== 'Lost') {
@@ -219,9 +218,6 @@ const reducer = (state = intitialState, action) => {
                     newData: true
                 }
             } else if (state.nextPosition.length === 0 && !utility.isItInArray(state.nextPosition, action.position)) {
-                console.log(state.lives);
-                console.log(state.counter);
-                console.log(state.lives - state.counter);
                 if ((state.lives - state.counter) <= 0) {
                     return {
                         ...state,
@@ -239,10 +235,10 @@ const reducer = (state = intitialState, action) => {
                         level: 1,
                         userlevels: 1,
                         newData: true,
+                        lives: 1
                     }
                 }
                 else {
-                    console.log('pisa')
                     let newLives = state.lives - state.counter;
                     return {
                         ...state,
@@ -261,7 +257,8 @@ const reducer = (state = intitialState, action) => {
                     }
                 }
             } else return {
-                ...state
+                ...state,
+                counter: state.counter - 1,
             }
         case actionTypes.NEXT_LVL:
             return {
