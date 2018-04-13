@@ -74,19 +74,25 @@ class Stats extends Component {
         let time = 0;
         time = (this.props.gameStarted && !this.props.gameFinished) ? <Timer /> : '0s';
         const modalInventory = this.props.pickPlayer ? (
-            <div>
-                <p>CHOOSE A PLAYER</p>
-                <Players players={this.props.players} select={this.props.onSelectPlayer} delete={this.props.onDeletePlayer} />
-                <Form
-                    submit={this.submitHandler}
-                    changed={this.inputChangeHandler} />
+            <div className={classes.Modal}>
+                <div>
+                    <p>CHOOSE A PLAYER</p>
+                    <Players players={this.props.players} select={this.props.onSelectPlayer} delete={this.props.onDeletePlayer} />
+                    <Form
+                        submit={this.submitHandler}
+                        changed={this.inputChangeHandler} />
+                </div>
             </div>
+
         ) :
             this.props.pickLvl ? (
-                <div>
-                    <p>CHOOSE A LEVEL</p>
-                    <Levels levels={this.props.userlvls} lvlclicked={this.props.onSelectLvl} />
+                <div className={classes.Modal}>
+                    <div>
+                        <p>CHOOSE A LEVEL</p>
+                        <Levels levels={this.props.userlvls} lvlclicked={this.props.onSelectLvl} />
+                    </div>
                 </div>
+
             ) : this.props.wrongUsername ? (
                 <div>
                     <p>{this.state.userMessage}</p>
@@ -100,7 +106,7 @@ class Stats extends Component {
             ) : this.props.showCharts ? (
                 <div style={{ height: "100%" }}>
                     <h2>LEVEL {this.props.chartLevel.length}</h2>
-                    <Chart times={this.props.chartLevel} clicked={this.props.onHideChart}/>
+                    <Chart times={this.props.chartLevel} clicked={this.props.onHideChart} />
                 </div>
             ) : null;
         return (

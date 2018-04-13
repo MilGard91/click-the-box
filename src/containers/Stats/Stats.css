@@ -15,3 +15,15 @@
     display: inline-block;
     box-sizing: border-box;
 }
+
+.Modal {
+    box-sizing: border-box;
+    padding-bottom: 60px;
+    display: flex;
+    height: 100%;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    text-transform: uppercase;
+    font-weight: bold;
+}

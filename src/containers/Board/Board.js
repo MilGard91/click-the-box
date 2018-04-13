@@ -14,26 +14,35 @@ class Board extends Component {
 
     render() {
         let finishMessage = this.props.finishType === 'Win' ? (
-            <div>
-                <p>{this.props.finishMessage}{this.props.level-1}</p>
-                <Button btnType={"Lost"} clicked={this.props.onSwitchPlayer}>CHANGE PLAYER</Button>
-                <Button btnType={"Lost"} clicked={this.props.onSwitchLvl}>SELECT A LEVEL</Button>
-                <Button btnType={"Win"} clicked={this.props.onNextLvl}>CONTINUE</Button>
+            <div className={classes.Modal}>
+                <div>
+                    <p>{this.props.finishMessage}{this.props.level - 1}</p>
+                    <Button btnType={"Lost"} clicked={this.props.onSwitchPlayer}>CHANGE PLAYER</Button>
+                    <Button btnType={"Lost"} clicked={this.props.onSwitchLvl}>SELECT A LEVEL</Button>
+                    <Button btnType={"Win"} clicked={this.props.onNextLvl}>CONTINUE</Button>
+                </div>
             </div>
-        ): this.props.finishType === 'Lost' ? (
-            <div>
-                <p>{this.props.finishMessage}</p>
-                <Button btnType={"Lost"} clicked={this.props.onSwitchPlayer}>CHANGE PLAYER</Button>
-                <Button btnType={"Lost"} clicked={this.props.onSwitchLvl}>SELECT A LEVEL</Button>
-                <Button btnType={"Win"} clicked={this.props.onNextLvl}>REPLAY</Button>
+
+        ) : this.props.finishType === 'Lost' ? (
+            <div className={classes.Modal}>
+                <div>
+                    <p>{this.props.finishMessage}</p>
+                    <Button btnType={"Lost"} clicked={this.props.onSwitchPlayer}>CHANGE PLAYER</Button>
+                    <Button btnType={"Lost"} clicked={this.props.onSwitchLvl}>SELECT A LEVEL</Button>
+                    <Button btnType={"Win"} clicked={this.props.onNextLvl}>REPLAY</Button>
+                </div>
             </div>
-        ): this.props.finishType === 'AllLost' ? (
-            <div>
-                <p>{this.props.finishMessage}</p>
-                <Button btnType={"Lost"} clicked={this.props.onSwitchPlayer}>CHANGE PLAYER</Button>
-                <Button btnType={"Win"} clicked={this.props.onNextLvl}>START OVER</Button>
+
+        ) : this.props.finishType === 'AllLost' ? (
+            <div className={classes.Modal}>
+                <div>
+                    <p>{this.props.finishMessage}</p>
+                    <Button btnType={"Lost"} clicked={this.props.onSwitchPlayer}>CHANGE PLAYER</Button>
+                    <Button btnType={"Win"} clicked={this.props.onNextLvl}>START OVER</Button>
+                </div>
             </div>
-        ): null;
+
+        ) : null;
 
         return (
             <div className={classes.Board}>
