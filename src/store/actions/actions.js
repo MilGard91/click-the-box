@@ -113,7 +113,11 @@ export const showCharts = (chartLevel) => {
     }
 }
 
-
+export const hideChart = () => {
+    return {
+        type: actionTypes.HIDE_CHART
+    }
+}
 
 
 ///////////////GAMEPLAY///////////////////

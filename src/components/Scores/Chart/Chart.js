@@ -49,7 +49,7 @@ const chart = (props) => {
             )
         }
     return (
-        <svg width="310px" height="220px">
+        <svg width="310px" height="220px" onClick={props.clicked}>
             <g className={classes.Grid}>
                 <line x1="40" y1="180" x2="305" y2="180"></line>
                 <line x1="40" y1="15" x2="40" y2="180"></line>

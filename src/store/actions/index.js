@@ -16,5 +16,6 @@ export {
     invalidUsername,
     retryUsername,
     showTopScores,
-    showCharts
+    showCharts,
+    hideChart
 } from './actions';

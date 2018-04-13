@@ -315,6 +315,12 @@ const reducer = (state = intitialState, action) => {
                 showCharts: !state.showCharts,
                 chartLevel: [...state.levelScores[action.chartLevel-1]]
             }
+        case actionTypes.HIDE_CHART:
+        return {
+            ...state,
+            showCharts: !state.showCharts,
+            showTopScores: !state.showTopScores
+        }
         default: return state;
     }
 }

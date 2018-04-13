@@ -100,7 +100,7 @@ class Stats extends Component {
             ) : this.props.showCharts ? (
                 <div style={{ height: "100%" }}>
                     <h2>LEVEL {this.props.chartLevel.length}</h2>
-                    <Chart times={this.props.chartLevel}/>
+                    <Chart times={this.props.chartLevel} clicked={this.props.onHideChart}/>
                 </div>
             ) : null;
         return (
@@ -154,7 +154,8 @@ const mapDispatchToProps = dispatch => {
         onStoreGameData: (data) => dispatch(actions.storeNewData(data)),
         onInvalidUsername: () => dispatch(actions.invalidUsername()),
         onRetryUsername: () => dispatch(actions.retryUsername()),
-        onShowCharts: (chartLevel) => dispatch(actions.showCharts(chartLevel))
+        onShowCharts: (chartLevel) => dispatch(actions.showCharts(chartLevel)),
+        onHideChart: () => dispatch(actions.hideChart())
     }
 }
 
