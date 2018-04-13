@@ -94,7 +94,6 @@ const reducer = (state = intitialState, action) => {
                 pickLvl: true,
             }
         case actionTypes.SELECT_LEVEL:
-            console.log()
             return {
                 ...state,
                 pickLvl: false,
@@ -201,22 +200,16 @@ const reducer = (state = intitialState, action) => {
                 /////
                 let newLvlScore =[], newLvlScores =[];
                 newLvlScores=[...state.levelScores]
-                console.log(state.levelScore)
                 if (state.level>state.levelScores.length) {
-                    console.log("test1")
                     newLvlScore = [...state.levelScore]
                     newLvlScores.push(newLvlScore)
                 } else if(state.levelScore[state.level-1]<state.levelScores[state.level-1][state.level-1]){
-                    console.log("test2")
                     newLvlScore = [...state.levelScore]
                     newLvlScores[state.level-1]=newLvlScore
                 } else {
                     newLvlScore = [...state.levelScores[state.level-1]]
                     newLvlScores[state.level-1]=newLvlScore;
                 }
-                console.log(newLvlScore)
-                
-                console.log(newLvlScores)
                 ////
                 let newLevels = state.userlevels
                 if (!(state.level < state.userlevels)) {

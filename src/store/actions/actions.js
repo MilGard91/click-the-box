@@ -18,7 +18,6 @@ const gameReady = () => {
 
 export const storeGameData = (gameData) => {
     return dispatch => {
-        console.log(gameData)
         localStorage.setItem('click-the-box', JSON.stringify(gameData));
         dispatch(storingComplete());
     }
@@ -31,7 +30,6 @@ export const checkGameData = (gameData) => {
             dispatch(storeGameData(gameData));
         } else {
             const fetchedData = JSON.parse(data);
-            console.log(fetchedData)
             dispatch(getData(fetchedData));
         }
         dispatch(gameReady());
