@@ -257,7 +257,8 @@ const reducer = (state = intitialState, action) => {
                         level: 1,
                         userlevels: 1,
                         newData: true,
-                        lives: 1
+                        lives: 1,
+                        levelScore: []
                     }
                 }
                 else {
@@ -275,7 +276,8 @@ const reducer = (state = intitialState, action) => {
                                 lives: newLives
                             }
                         },
-                        newData: true
+                        newData: true,
+                        levelScore: []
                     }
                 }
             } else return {
