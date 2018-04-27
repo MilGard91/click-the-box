@@ -11,8 +11,8 @@ export const TIMER_STOPED = 'TIMER_STOPED';
 export const TIMER_TICK = 'TIMER_TICK';
 
 export const SHOW_TOP_SCORES = 'SHOW_TOP_SCORES';
-export const SHOW_CHARTS= 'SHOW_CHARTS';
-export const HIDE_CHART= 'HIDE_CHART';
+export const SHOW_CHARTS = 'SHOW_CHARTS';
+export const HIDE_CHART = 'HIDE_CHART';
 
 export const SUBMIT_NEW_PLAYER = 'SUBMIT_NEW_PLAYER';
 export const INVALID_USERNAME = 'INVALID_USERNAME';
