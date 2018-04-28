@@ -167,25 +167,29 @@ const reducer = (state = intitialState, action) => {
         ...state,
         nextPosition: algorithms.nextMoves([action.position], state.mustPosition),
       };
-    case actionTypes.CHECK_THE_BOX:
+    // case actionTypes.CHECK_THE_BOX:
+    //   if (utility.isItInArray(state.nextPosition, action.position)) {
+    //     return {
+    //       ...state,
+    //     };
+    //   } return {
+    //     ...state,
+    //     gameFinished: true,
+    //     flaged: [action.position],
+    //     finishType: 'Lost',
+    //   };
+    case actionTypes.BOX_ACTIVATED:
       if (utility.isItInArray(state.nextPosition, action.position)) {
         return {
           ...state,
+          activePosition: [...state.activePosition, action.position],
+          mustPosition: algorithms.positionClicked(action.position, state.mustPosition),
+          nextPosition: algorithms.nextMoves([action.position], algorithms.positionClicked(action.position, state.mustPosition)),
+          levelScore: [...state.levelScore, state.time],
+
         };
       } return {
         ...state,
-        gameFinished: true,
-        flaged: [action.position],
-        finishType: 'Lost',
-      };
-    case actionTypes.BOX_ACTIVATED:
-      return {
-        ...state,
-        activePosition: [...state.activePosition, action.position],
-        mustPosition: algorithms.positionClicked(action.position, state.mustPosition),
-        nextPosition: algorithms.nextMoves([action.position], algorithms.positionClicked(action.position, state.mustPosition)),
-        levelScore: [...state.levelScore, state.time],
-
       };
     case actionTypes.GAME_FINISH:
       if (state.nextPosition.length === 0 && state.mustPosition.length === 0 && state.finishType !== 'Lost') {

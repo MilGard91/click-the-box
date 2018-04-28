@@ -16,9 +16,9 @@ const Box = (props) => {
     case 'next':
       boxClasses.push(classes.BoxNext);
       break;
-    case 'flaged':
-      boxClasses.push(classes.BoxFlaged);
-      break;
+    // case 'flaged':
+    //   boxClasses.push(classes.BoxFlaged);
+    //   break;
     default:
       break;
   }
