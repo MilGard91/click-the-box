@@ -1,15 +1,15 @@
 .CancelButton {
+    display: inline-block;
+    margin-left: auto;
     background-color: transparent;
     border: none;
     color: rgb(192, 0, 0);
     box-sizing: border-box;
-    padding: 5px;
+    padding: .5rem;
     cursor: pointer;
     font-weight: bold;
-    float: right;
     margin-right: 10px;
     width: 5%;
-    margin-left: 0;
 }
 
 .CancelButton:hover {

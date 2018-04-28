@@ -74,24 +74,20 @@ class Stats extends Component {
       time = (this.props.gameStarted && !this.props.gameFinished) ? <Timer /> : '0s';
       const modalInventory = this.props.pickPlayer ? (
         <div className={classes.Modal}>
-          <div>
-            <p>CHOOSE A PLAYER</p>
-            <Players players={this.props.players} select={this.props.onSelectPlayer} delete={this.props.onDeletePlayer} />
-            <Form
-              submit={this.submitHandler}
-              changed={this.inputChangeHandler}
-              clicked={this.submitHandler}
-            />
-          </div>
+          <p>CHOOSE A PLAYER</p>
+          <Players players={this.props.players} select={this.props.onSelectPlayer} delete={this.props.onDeletePlayer} />
+          <Form
+            submit={this.submitHandler}
+            changed={this.inputChangeHandler}
+            clicked={this.submitHandler}
+          />
         </div>
 
       ) :
         this.props.pickLvl ? (
           <div className={classes.Modal}>
-            <div>
-              <p>CHOOSE A LEVEL</p>
-              <Levels levels={this.props.userlvls} lvlclicked={this.props.onSelectLvl} />
-            </div>
+            <p>CHOOSE A LEVEL</p>
+            <Levels levels={this.props.userlvls} lvlclicked={this.props.onSelectLvl} />
           </div>
 
         ) : this.props.wrongUsername ? (

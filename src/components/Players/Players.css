@@ -1,5 +1,7 @@
 .Players {
     display: flex;
-    flex-flow: column wrap;
-    margin-bottom: 15px;
+    flex-flow: column nowrap;
+    overflow: auto;
+    margin-bottom: 1.5rem;
+    height: 100%;
 }

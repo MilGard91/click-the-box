@@ -1,22 +1,38 @@
 .PlayerContainer {
+    width: 30rem;
     display: flex;
-    align-items: center;
+    justify-content: space-between;
+    flex: 0 0 2rem;
+    align-items: center; 
+    border: 1px solid transparent; 
+    transition: all .2s;
+    border-radius: 3px;
+
+}
+
+.PlayerContainer:not(:last-child) {
+    margin-bottom: .5rem;
+}
+
+.PlayerContainer:hover {
+    border: 1px solid #eee;
+    box-shadow: 0 1px 1rem rgba(0, 0 , 0, .2);
 }
 
 
 .Player {
-    box-sizing: border-box;
+    flex-grow: 1;
+    display: block;
     background-color: transparent;
     border: none;
     color: rgb(40, 40, 255);
-    font: inherit;
+    font-family: inherit;
+    font-size: 1.6rem;
+    font-weight: 700;
     outline: none;
-    padding: 10px;
-    margin: 5px;
+    padding: 1rem;
     text-transform: uppercase;
     cursor: pointer;
-    width: 90%;
-    margin-right: 0;
 }
 
 .Player:hover{

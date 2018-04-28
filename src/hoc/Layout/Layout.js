@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import Aux from '../Auxiliary/Auxiliary';
+// import Aux from '../Auxiliary/Auxiliary';
 import Toolbar from '../../components/TSL/Toolbar/Toolbar';
 import Board from '../../containers/Board/Board';
 import classes from './Layout.css';
@@ -13,13 +13,13 @@ class Layout extends Component {
   state = {}
   render() {
     return (
-      <Aux>
+      <div className={classes.Container}>
         <Toolbar clicked={this.props.onShowTopScores} activated={this.props.showTopScores} />
         <main className={classes.Layout}>
           <Board />
           <Stats />
         </main>
-      </Aux>
+      </div>
 
     );
   }

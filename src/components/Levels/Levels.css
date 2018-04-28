@@ -1,7 +1,7 @@
-.Players {
+.Levels {
     display: flex;
-    flex-flow: row nowrap;
-    margin-bottom: 15px;
-    justify-content: space-between;
-    
+    width: 80%;
+    flex-flow: row wrap;
+    margin-bottom: 1.5rem;
+    justify-content: center;
 }

@@ -1,4 +1,6 @@
 .Modal {
+    display: flex;
+    justify-content: center;
     text-align: center;
     position: fixed;
     z-index: 500;
@@ -6,11 +8,11 @@
     width: 100%;
     border: 1px solid #ccc;
     box-shadow: 1px 1px 1px black;
-    padding: 16px;
+    padding: 1.6rem;
     height: 90%;
     box-sizing: border-box;
     transition: all 0.3s ease-out;
-    border-radius: 30px;
+    border-radius: 3rem;
 }
 
 @media (min-width: 500px) {
