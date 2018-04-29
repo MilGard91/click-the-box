@@ -17,16 +17,40 @@ import Chart from '../../components/Scores/Chart/Chart';
 class Stats extends Component {
     state = {
       inputValue: '',
+      modalCase: 'PLAYER',
     }
-
 
     componentWillUpdate(newProps) {
       if (newProps.newData) {
         this.props.onStoreGameData(newProps.data);
       }
+      if (newProps.pickLvl !== this.props.pickLvl ||
+        newProps.pickPlayer !== this.props.pickPlayer ||
+        newProps.wrongUsername !== this.props.wrongUsername ||
+        newProps.showTopScores !== this.props.showTopScores ||
+        newProps.showCharts !== this.props.showCharts) {
+        this.modalCaseDetermination(newProps.pickPlayer, newProps.pickLvl, newProps.wrongUsername, newProps.showTopScores, newProps.showCharts);
+      }
     }
 
 
+    modalCaseDetermination = (player, level, wrongUsername, topScores, chart) => {
+      if (player) {
+        this.setState({ modalCase: 'PLAYER' });
+      }
+      if (level) {
+        this.setState({ modalCase: 'LEVEL' });
+      }
+      if (wrongUsername) {
+        this.setState({ modalCase: 'WRONG USERNAME' });
+      }
+      if (topScores) {
+        this.setState({ modalCase: 'TOP SCORES' });
+      }
+      if (chart) {
+        this.setState({ modalCase: 'CHART' });
+      }
+    }
     userCheck = (users, user) => {
       let check;
       let res;
@@ -72,40 +96,56 @@ class Stats extends Component {
     render() {
       let time = 0;
       time = (this.props.gameStarted && !this.props.gameFinished) ? <Timer /> : '0s';
-      const modalInventory = this.props.pickPlayer ? (
-        <div className={classes.Modal}>
-          <p>CHOOSE A PLAYER</p>
-          <Players players={this.props.players} select={this.props.onSelectPlayer} delete={this.props.onDeletePlayer} />
-          <Form
-            submit={this.submitHandler}
-            changed={this.inputChangeHandler}
-            clicked={this.submitHandler}
-          />
-        </div>
-
-      ) :
-        this.props.pickLvl ? (
-          <div className={classes.Modal}>
-            <p>CHOOSE A LEVEL</p>
-            <Levels levels={this.props.userlvls} lvlclicked={this.props.onSelectLvl} />
-          </div>
-
-        ) : this.props.wrongUsername ? (
-          <div>
-            <p>{this.state.userMessage}</p>
-            <Button btnType="Win" clicked={this.props.onRetryUsername}>RETRY</Button>
-          </div>
-        ) : this.props.showTopScores ? (
-          <div style={{ height: '100%' }}>
-            <h2>TOP SCORES</h2>
-            <Scores list={this.props.scores} clicked={this.props.onShowCharts} />
-          </div>
-        ) : this.props.showCharts ? (
-          <div style={{ height: '100%' }}>
-            <h2>LEVEL {this.props.chartLevel.length}</h2>
-            <Chart times={this.props.chartLevel} clicked={this.props.onHideChart} />
-          </div>
-        ) : <div />;
+      let modalInventory = '';
+      switch (this.state.modalCase) {
+        case 'PLAYER':
+          modalInventory = (
+            <div className={classes.Modal}>
+              <p>CHOOSE A PLAYER</p>
+              <Players players={this.props.players} select={this.props.onSelectPlayer} delete={this.props.onDeletePlayer} />
+              <Form
+                submit={this.submitHandler}
+                changed={this.inputChangeHandler}
+                clicked={this.submitHandler}
+              />
+            </div>
+          );
+          break;
+        case 'LEVEL':
+          modalInventory = (
+            <div className={classes.Modal}>
+              <p>CHOOSE A LEVEL</p>
+              <Levels levels={this.props.userlvls} lvlclicked={this.props.onSelectLvl} />
+            </div>
+          );
+          break;
+        case 'WRONG USERNAME':
+          modalInventory = (
+            <div>
+              <p>{this.state.userMessage}</p>
+              <Button btnType="Win" clicked={this.props.onRetryUsername}>RETRY</Button>
+            </div>
+          );
+          break;
+        case 'TOP SCORES':
+          modalInventory = (
+            <div style={{ height: '100%' }}>
+              <h2>TOP SCORES</h2>
+              <Scores list={this.props.scores} clicked={this.props.onShowCharts} />
+            </div>
+          );
+          break;
+        case 'CHART':
+          modalInventory = (
+            <div style={{ height: '100%' }}>
+              <h2>LEVEL {this.props.chartLevel.length}</h2>
+              <Chart times={this.props.chartLevel} clicked={this.props.onHideChart} />
+            </div>
+          );
+          break;
+        default:
+          modalInventory = <div />;
+      }
       return (
         <Aux>
           <Modal show={this.props.pickLvl || this.props.pickPlayer || this.props.wrongUsername || this.props.showTopScores || this.props.showCharts}>

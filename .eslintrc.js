@@ -12,7 +12,6 @@ module.exports = {
         "react/jsx-filename-extension": [1, {"extensions": [".js"]}],
         "max-len": 0,
         "no-plusplus": 0,
-        "no-nested-ternary": 0,
         "react/no-array-index-key": 0,
         "no-underscore-dangle": ["error", { "allow": ["__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"] }],
       }
