@@ -18,35 +18,33 @@ class Board extends Component {
       case 'Win':
         finishMessage = (
           <div className={classes.Modal}>
-            <div>
-              <p>{this.props.finishMessage}{this.props.level - 1}</p>
-              <Button btnType="Lost" clicked={this.props.onSwitchPlayer}>CHANGE PLAYER</Button>
-              <Button btnType="Lost" clicked={this.props.onSwitchLvl}>SELECT A LEVEL</Button>
-              <Button btnType="Win" clicked={this.props.onNextLvl}>CONTINUE</Button>
-            </div>
+            <p>{this.props.finishMessage}{this.props.level - 1}</p>
+            <Button btnType="Lost" clicked={this.props.onSwitchPlayer}>CHANGE PLAYER</Button>
+            <Button btnType="Lost" clicked={this.props.onSwitchLvl}>SELECT A LEVEL</Button>
+            <Button btnType="Win" clicked={this.props.onNextLvl}>CONTINUE</Button>
           </div>
         );
         break;
       case 'Lost':
         finishMessage = (
           <div className={classes.Modal}>
-            <div>
-              <p>{this.props.finishMessage}</p>
-              <Button btnType="Lost" clicked={this.props.onSwitchPlayer}>CHANGE PLAYER</Button>
-              <Button btnType="Lost" clicked={this.props.onSwitchLvl}>SELECT A LEVEL</Button>
-              <Button btnType="Win" clicked={this.props.onNextLvl}>REPLAY</Button>
-            </div>
+
+            <p>{this.props.finishMessage}</p>
+            <Button btnType="Lost" clicked={this.props.onSwitchPlayer}>CHANGE PLAYER</Button>
+            <Button btnType="Lost" clicked={this.props.onSwitchLvl}>SELECT A LEVEL</Button>
+            <Button btnType="Win" clicked={this.props.onNextLvl}>REPLAY</Button>
+
           </div>
         );
         break;
       case 'AllLost':
         finishMessage = (
           <div className={classes.Modal}>
-            <div>
-              <p>{this.props.finishMessage}</p>
-              <Button btnType="Lost" clicked={this.props.onSwitchPlayer}>CHANGE PLAYER</Button>
-              <Button btnType="Win" clicked={this.props.onNextLvl}>START OVER</Button>
-            </div>
+
+            <p>{this.props.finishMessage}</p>
+            <Button btnType="Lost" clicked={this.props.onSwitchPlayer}>CHANGE PLAYER</Button>
+            <Button btnType="Win" clicked={this.props.onNextLvl}>START OVER</Button>
+
           </div>
         );
         break;

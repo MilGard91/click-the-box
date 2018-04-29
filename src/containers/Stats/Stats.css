@@ -33,9 +33,23 @@
 .Modal p{
     margin-bottom: 1.5rem;
 }
-
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 600px),
+       only screen and (max-width:1100px) and (orientation: landscape) {
     .Stats {
+        font-size: 1rem;
+    }
+    .Modal {
+        font-size: 1.5rem;
+    }
+
+}
+
+@media only screen and (max-width: 600px) and (max-height: 300px) and (orientation: landscape){
+    .Stats {
+        font-size: .8rem;
+    }
+    .Modal,
+    .Modal p {
         font-size: 1rem;
     }
 }

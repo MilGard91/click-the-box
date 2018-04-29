@@ -2,30 +2,34 @@
     display: flex;
     justify-content: center;
     text-align: center;
-    position: fixed;
+    position: absolute;
+    left: 15%;
+    top: 50%;
     z-index: 500;
-    background-color: white;
-    width: 100%;
+    background-color: #fdfdfd;
+    width: 70%;
     border: 1px solid #ccc;
-    box-shadow: 1px 1px 1px black;
+    box-shadow: 0 1rem 1rem rgba(0, 0, 0, .3);
     padding: 1.6rem;
+    max-height: 40%;
     height: 90%;
     box-sizing: border-box;
     transition: all 0.3s ease-out;
     border-radius: 3rem;
 }
 
-@media (min-width: 500px) {
+@media (max-width: 600px) {
     .Modal {
-        width: 70%;
-        max-height: 60%;
-        left: 15%;
-        top: 30%;
+        width: 100%;
+        max-height: 90vh;
+        left: 0;
+        top: 50%;
     }
 }
 
-@media (min-width: 500px) and (min-height: 700px) {
+
+@media only screen and (max-width: 600px) and (max-height: 300px) and (orientation: landscape){
     .Modal {
-        max-height: 40%;
+        height: 25rem;
     }
 }

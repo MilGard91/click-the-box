@@ -121,7 +121,7 @@ class Stats extends Component {
           break;
         case 'WRONG USERNAME':
           modalInventory = (
-            <div>
+            <div className={classes.Modal}>
               <p>{this.state.userMessage}</p>
               <Button btnType="Win" clicked={this.props.onRetryUsername}>RETRY</Button>
             </div>
@@ -129,16 +129,17 @@ class Stats extends Component {
           break;
         case 'TOP SCORES':
           modalInventory = (
-            <div style={{ height: '100%' }}>
-              <h2>TOP SCORES</h2>
+            <div className={classes.Modal} style={{ height: '100%' }}>
+              <p>TOP SCORES</p>
               <Scores list={this.props.scores} clicked={this.props.onShowCharts} />
+              <Button btnType="Lost" clicked={this.props.onHideTopScores}>CLOSE</Button>
             </div>
           );
           break;
         case 'CHART':
           modalInventory = (
-            <div style={{ height: '100%' }}>
-              <h2>LEVEL {this.props.chartLevel.length}</h2>
+            <div style={{ height: '100%' }} className={classes.Modal}>
+              <p>LEVEL {this.props.chartLevel.length}</p>
               <Chart times={this.props.chartLevel} clicked={this.props.onHideChart} />
             </div>
           );
@@ -175,6 +176,7 @@ Stats.propTypes = {
   onSelectPlayer: PropTypes.func.isRequired,
   onShowCharts: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  onHideTopScores: PropTypes.func.isRequired,
   players: PropTypes.arrayOf(PropTypes.string).isRequired,
   gameFinished: PropTypes.bool.isRequired,
   gameStarted: PropTypes.bool.isRequired,
@@ -222,6 +224,7 @@ const mapDispatchToProps = dispatch => (
     onRetryUsername: () => dispatch(actions.retryUsername()),
     onShowCharts: chartLevel => dispatch(actions.showCharts(chartLevel)),
     onHideChart: () => dispatch(actions.hideChart()),
+    onHideTopScores: () => dispatch(actions.showTopScores()),
   });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Stats);
