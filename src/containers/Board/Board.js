@@ -7,12 +7,11 @@ import Boxes from '../../components/Boxes/Boxes';
 import classes from './Board.css';
 import * as actions from '../../store/actions/index';
 import Button from '../../components/UI/Button/Button';
-// import Players from '../../components/Players/Players';
-
 
 class Board extends Component {
-  state ={}
-
+  boxClicked = (x, y) => {
+    this.props.onBoxClicked(this.props.gameStarted, x, y);
+  }
   render() {
     let finishMessage = '';
     switch (this.props.finishType) {
@@ -63,8 +62,7 @@ class Board extends Component {
           active={this.props.activePosition}
           must={this.props.mustPosition}
           next={this.props.nextPosition}
-          // flaged={this.props.flaged}
-          clicked={(x, y) => this.props.onBoxClicked(this.props.gameStarted, x, y)}
+          clicked={(x, y) => this.boxClicked(x, y)}
         />
       </div>
     );
@@ -82,7 +80,6 @@ Board.propTypes = {
   activePosition: PropTypes.arrayOf(PropTypes.array).isRequired,
   mustPosition: PropTypes.arrayOf(PropTypes.array).isRequired,
   nextPosition: PropTypes.arrayOf(PropTypes.array).isRequired,
-  // flaged: PropTypes.arrayOf(PropTypes.array).isRequired,
   onBoxClicked: PropTypes.func.isRequired,
   gameStarted: PropTypes.bool.isRequired,
 };
@@ -95,7 +92,6 @@ const mapStateToProps = state => (
     mustPosition: state.mustPosition,
     gameFinished: state.gameFinished,
     finishMessage: state.finishMessage,
-    // flaged: state.flaged,
     finishType: state.finishType,
     level: state.level,
     players: state.data.users,

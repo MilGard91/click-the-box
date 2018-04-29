@@ -1,6 +1,5 @@
 import React from 'react';
 
-// import Box from './Box/Box';
 import classes from './Boxes.css';
 import { isItInArray } from '../../Utility';
 
@@ -11,8 +10,6 @@ const boxes = (props) => {
   }
   const fieldsBoard = fields.map((i, j) => (
     i.map((z) => {
-      // isItInArray(props.flaged, [j, z]) ?
-      //   <Box boxType="flaged" key={`${j} - ${z}`} row={j} col={z} clicked={(x, y) => (props.clicked(x, y))} /> :
       if (isItInArray(props.active, [j, z])) {
         return (
           <button

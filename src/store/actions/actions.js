@@ -108,11 +108,6 @@ const boxActivated = (positionX, positionY) => ({
   position: [positionX, positionY],
 });
 
-// const checkTheBox = (positionX, positionY) => ({
-//   type: actionTypes.CHECK_THE_BOX,
-//   position: [positionX, positionY],
-// });
-
 export const gameFinish = (positionX, positionY) => ({
   type: actionTypes.GAME_FINISH,
   position: [positionX, positionY],
@@ -123,7 +118,6 @@ export const boxClicked = (gameStarted, positionX, positionY) => (dispatch) => {
     dispatch(gameStart(positionX, positionY));
     dispatch(nextSteps(positionX, positionY));
   } else {
-    // dispatch(checkTheBox(positionX, positionY));
     dispatch(boxActivated(positionX, positionY));
     dispatch(gameFinish(positionX, positionY));
   }

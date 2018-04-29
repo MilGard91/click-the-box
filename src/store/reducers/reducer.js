@@ -35,7 +35,6 @@ const intitialState = {
   activePosition: [],
   mustPosition: [],
   lastClicked: [],
-  flaged: [],
 };
 
 
@@ -110,7 +109,6 @@ const reducer = (state = intitialState, action) => {
         activePosition: [],
         mustPosition: [],
         lastClicked: [],
-        flaged: [],
         counter: '~',
       };
     case actionTypes.SWITCH_LVL:
@@ -125,7 +123,6 @@ const reducer = (state = intitialState, action) => {
         activePosition: [],
         mustPosition: [],
         lastClicked: [],
-        flaged: [],
         counter: '~',
       };
     case actionTypes.DELETE_PLAYER: {
@@ -167,17 +164,6 @@ const reducer = (state = intitialState, action) => {
         ...state,
         nextPosition: algorithms.nextMoves([action.position], state.mustPosition),
       };
-    // case actionTypes.CHECK_THE_BOX:
-    //   if (utility.isItInArray(state.nextPosition, action.position)) {
-    //     return {
-    //       ...state,
-    //     };
-    //   } return {
-    //     ...state,
-    //     gameFinished: true,
-    //     flaged: [action.position],
-    //     finishType: 'Lost',
-    //   };
     case actionTypes.BOX_ACTIVATED:
       if (utility.isItInArray(state.nextPosition, action.position)) {
         return {
@@ -199,7 +185,6 @@ const reducer = (state = intitialState, action) => {
         } else {
           arr.push([state.time]);
         }
-        // ///
         let newLvlScore = [];
         let newLvlScores = [];
         newLvlScores = [...state.levelScores];
@@ -213,7 +198,6 @@ const reducer = (state = intitialState, action) => {
           newLvlScore = [...state.levelScores[state.level - 1]];
           newLvlScores[state.level - 1] = newLvlScore;
         }
-        // //
         let newLevels = state.userlevels;
         if (!(state.level < state.userlevels)) {
           newLevels += 1;
@@ -297,7 +281,6 @@ const reducer = (state = intitialState, action) => {
         activePosition: [],
         mustPosition: [],
         lastClicked: [],
-        flaged: [],
         counter: '~',
       };
     case actionTypes.SHOW_TOP_SCORES:
