@@ -81,7 +81,6 @@ class Stats extends Component {
       if (check === 'PASS') {
         this.props.onSubmit(this.state.inputValue);
         this.setState({ inputValue: '' });
-        // event.target.reset();
       } else {
         this.setState({ userMessage: check });
         this.props.onInvalidUsername();
@@ -107,6 +106,7 @@ class Stats extends Component {
                 submit={this.submitHandler}
                 changed={this.inputChangeHandler}
                 clicked={this.submitHandler}
+                value={this.state.inputValue}
               />
             </div>
           );

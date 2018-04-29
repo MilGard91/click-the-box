@@ -13,12 +13,14 @@ const Form = props => (
       className={classes.Input}
       placeholder="USERNAME"
       onChange={props.changed}
+      value={props.value}
     />
     <Button btnType="Win" clicked={props.clicked}>CREATE PLAYER</Button>
   </form>
 );
 
 Form.propTypes = {
+  value: PropTypes.string.isRequired,
   submit: PropTypes.func.isRequired,
   changed: PropTypes.func.isRequired,
   clicked: PropTypes.func.isRequired,
