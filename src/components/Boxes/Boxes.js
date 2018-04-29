@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Box from './Box/Box';
+// import Box from './Box/Box';
 import classes from './Boxes.css';
 import { isItInArray } from '../../Utility';
 
@@ -14,12 +14,28 @@ const boxes = (props) => {
       // isItInArray(props.flaged, [j, z]) ?
       //   <Box boxType="flaged" key={`${j} - ${z}`} row={j} col={z} clicked={(x, y) => (props.clicked(x, y))} /> :
       isItInArray(props.active, [j, z]) ?
-        <Box boxType="active" key={`${j} - ${z}`} row={j} col={z} clicked={(x, y) => (props.clicked(x, y))} /> :
+        <button
+          className={[classes.Box, classes.BoxActivated].join(' ')}
+          key={`${j} - ${z}`}
+          onClick={() => (props.clicked(j, z))}
+        /> :
         isItInArray(props.next, [j, z]) ?
-          <Box boxType="next" key={`${j} - ${z}`} row={j} col={z} clicked={(x, y) => (props.clicked(x, y))} /> :
+          <button
+            className={[classes.Box, classes.BoxNext].join(' ')}
+            key={`${j} - ${z}`}
+            onClick={() => (props.clicked(j, z))}
+          /> :
           isItInArray(props.must, [j, z]) ?
-            <Box boxType="must" key={`${j} - ${z}`} row={j} col={z} clicked={(x, y) => (props.clicked(x, y))} /> :
-            <Box boxType="" key={`${j} - ${z}`} row={j} col={z} clicked={(x, y) => (props.clicked(x, y))} />
+            <button
+              className={[classes.Box, classes.BoxMust].join(' ')}
+              key={`${j} - ${z}`}
+              onClick={() => (props.clicked(j, z))}
+            /> :
+            <button
+              className={classes.Box}
+              key={`${j} - ${z}`}
+              onClick={() => (props.clicked(j, z))}
+            />
     ))
   ));
   return (

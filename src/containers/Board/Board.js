@@ -54,7 +54,7 @@ class Board extends Component {
           active={this.props.activePosition}
           must={this.props.mustPosition}
           next={this.props.nextPosition}
-          flaged={this.props.flaged}
+          // flaged={this.props.flaged}
           clicked={(x, y) => this.props.onBoxClicked(this.props.gameStarted, x, y)}
         />
       </div>
@@ -73,7 +73,7 @@ Board.propTypes = {
   activePosition: PropTypes.arrayOf(PropTypes.array).isRequired,
   mustPosition: PropTypes.arrayOf(PropTypes.array).isRequired,
   nextPosition: PropTypes.arrayOf(PropTypes.array).isRequired,
-  flaged: PropTypes.arrayOf(PropTypes.array).isRequired,
+  // flaged: PropTypes.arrayOf(PropTypes.array).isRequired,
   onBoxClicked: PropTypes.func.isRequired,
   gameStarted: PropTypes.bool.isRequired,
 };
@@ -86,7 +86,7 @@ const mapStateToProps = state => (
     mustPosition: state.mustPosition,
     gameFinished: state.gameFinished,
     finishMessage: state.finishMessage,
-    flaged: state.flaged,
+    // flaged: state.flaged,
     finishType: state.finishType,
     level: state.level,
     players: state.data.users,

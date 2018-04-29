@@ -1,4 +1,5 @@
 .Scores {
+    font-size: 1.4rem;
     height: 15rem;
     width: 100%;
     overflow: auto;
@@ -16,4 +17,17 @@
 
 .ScoreTable tr td {
     border-bottom: rgb(142, 172 , 174);
+}
+
+/* SCORE */
+
+.Score {
+    font-size: 1.3rem;
+    height: 2rem;
+    text-align: center;
+    border-bottom: 1px solid rgb(126, 126, 126)
+}
+
+.Score:hover{
+    background-color: rgb(142, 172 , 174);
 }

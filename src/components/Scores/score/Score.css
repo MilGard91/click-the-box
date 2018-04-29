@@ -1,9 +1,0 @@
-.Score {
-    height: 2rem;
-    text-align: center;
-    border-bottom: 1px solid rgb(126, 126, 126)
-}
-
-.Score:hover{
-    background-color: rgb(142, 172 , 174);
-}
