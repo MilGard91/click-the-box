@@ -24,7 +24,14 @@ class App extends Component {
 }
 App.propTypes = {
   onStart: PropTypes.func.isRequired,
-  data: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.array, PropTypes.object])).isRequired,
+  data: PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.shape({
+      scores: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
+      lives: PropTypes.number,
+      level: PropTypes.number,
+      levelScore: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number)),
+    })])).isRequired,
   gameReady: PropTypes.bool.isRequired,
 };
 const mapStateToProps = state => ({
