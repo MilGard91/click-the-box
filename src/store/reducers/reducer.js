@@ -168,6 +168,7 @@ const reducer = (state = intitialState, action) => {
       if (utility.isItInArray(state.nextPosition, action.position)) {
         return {
           ...state,
+          counter: state.counter - 1,
           activePosition: [...state.activePosition, action.position],
           mustPosition: algorithms.positionClicked(action.position, state.mustPosition),
           nextPosition: algorithms.nextMoves([action.position], algorithms.positionClicked(action.position, state.mustPosition)),
@@ -268,7 +269,6 @@ const reducer = (state = intitialState, action) => {
         };
       } return {
         ...state,
-        counter: state.counter - 1,
       };
     case actionTypes.NEXT_LVL:
       return {
