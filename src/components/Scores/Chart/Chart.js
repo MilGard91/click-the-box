@@ -11,7 +11,7 @@ const chart = (props) => {
   }
   newArr.push(arr[0]);
   newArr.reverse();
-  const yPoint = Math.floor(160 / Math.max(...newArr));
+  const yPoint = Math.max(...newArr) !== 0 ? Math.floor(160 / Math.max(...newArr)) : 0;
   const xPoint = Math.floor(250 / newArr.length);
 
   const xPoints = newArr.map((el, i) => (
@@ -80,6 +80,7 @@ const chart = (props) => {
       <g className={classes.Labels}>
         <text x="5" y="110" transform="rotate(90 10,110)">SECONDS</text>
         <text x="150" y="210">CLICK</text>
+        <text x="30" y="195">0</text>
         {xLabels}
         {yLabels}
       </g>
