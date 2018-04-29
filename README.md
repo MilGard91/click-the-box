@@ -8,11 +8,11 @@ Player has 10x10 board of boxes. First click starts the game, and sets the requi
 
 <h2>INSTALATION</h2>
 
-Clone repo, then:
-
+Clone repository, then:
+```
 npm install
 npm start
-
+```
 <h2>Deployment</h2>
 
 To add this game to your web just upload the content from build folder. And enjoy the game
