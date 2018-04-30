@@ -19,21 +19,23 @@ class Board extends Component {
         finishMessage = (
           <div className={classes.Modal}>
             <p>{this.props.finishMessage}{this.props.level - 1}</p>
-            <Button btnType="Lost" clicked={this.props.onSwitchPlayer}>CHANGE PLAYER</Button>
-            <Button btnType="Lost" clicked={this.props.onSwitchLvl}>SELECT A LEVEL</Button>
-            <Button btnType="Win" clicked={this.props.onNextLvl}>CONTINUE</Button>
+            <div className={classes.Buttons}>
+              <Button btnType="Lost" clicked={this.props.onSwitchPlayer}>CHANGE PLAYER</Button>
+              <Button btnType="Lost" clicked={this.props.onSwitchLvl}>SELECT A LEVEL</Button>
+              <Button btnType="Win" clicked={this.props.onNextLvl}>CONTINUE</Button>
+            </div>
           </div>
         );
         break;
       case 'Lost':
         finishMessage = (
           <div className={classes.Modal}>
-
             <p>{this.props.finishMessage}</p>
-            <Button btnType="Lost" clicked={this.props.onSwitchPlayer}>CHANGE PLAYER</Button>
-            <Button btnType="Lost" clicked={this.props.onSwitchLvl}>SELECT A LEVEL</Button>
-            <Button btnType="Win" clicked={this.props.onNextLvl}>REPLAY</Button>
-
+            <div className={classes.Buttons}>
+              <Button btnType="Lost" clicked={this.props.onSwitchPlayer}>CHANGE PLAYER</Button>
+              <Button btnType="Lost" clicked={this.props.onSwitchLvl}>SELECT A LEVEL</Button>
+              <Button btnType="Win" clicked={this.props.onNextLvl}>REPLAY</Button>
+            </div>
           </div>
         );
         break;

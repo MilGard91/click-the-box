@@ -19,8 +19,15 @@
   margin-bottom: 1.5rem;
 }
 
+.Buttons {
+    display: flex;
+}
+
 @media only screen and (max-width: 600px) {
     .Modal{
         font-size: 1.3rem;
+    }
+    .Buttons {
+        flex-direction: column-reverse;
     }
 }
